@@ -1,13 +1,16 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <head>
+        <title>Pratibha & Saket Wedding Invitation | May 2025</title>
+        <meta name="description" content="You are cordially invited to celebrate the wedding of Pratibha and Saket. Join us for the Haldi, Mehndi, and Wedding ceremonies at Hotel Vighyan Mahal, Jabalpur." />
+      </head>
+      <main>
+        <WeddingVideoPlayer />
+      </main>
+    </>
   );
 };
 
