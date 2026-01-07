@@ -28,9 +28,9 @@ export default {
           light: "hsl(var(--gold-light))",
           dark: "hsl(var(--gold-dark))",
         },
-        royal: {
-          red: "hsl(var(--royal-red))",
-          "red-dark": "hsl(var(--royal-red-dark))",
+        "royal-red": {
+          DEFAULT: "hsl(var(--royal-red))",
+          dark: "hsl(var(--royal-red-dark))",
         },
         marble: {
           DEFAULT: "hsl(var(--marble))",
