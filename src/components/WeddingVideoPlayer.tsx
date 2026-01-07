@@ -306,8 +306,8 @@ const WeddingVideoPlayer = () => {
           {showBanner && (
             <VideoBanner 
               onPlay={handleBannerPlay}
-              coupleName="Pratibha & Saket"
-              tagline="Wedding Invitation Video"
+              coupleName="विपिन & प्रिया"
+              tagline="विवाह निमंत्रण"
             />
           )}
 

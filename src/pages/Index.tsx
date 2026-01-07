@@ -1,28 +1,17 @@
-import { useState, useCallback } from "react";
-import SplashScreen from "@/components/SplashScreen";
 import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
-import { MapPin, Calendar, Heart } from "lucide-react";
+import { Calendar, Heart } from "lucide-react";
 
 const Index = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  
-  // Wedding date: May 12, 2025
-  const weddingDate = new Date("2025-05-12T18:00:00");
-
-  const handleSplashComplete = useCallback(() => {
-    setShowSplash(false);
-  }, []);
+  // Wedding date: April 28, 2026
+  const weddingDate = new Date("2026-04-28T18:00:00");
 
   return (
     <>
       <head>
-        <title>Pratibha & Saket Wedding Invitation | May 2025</title>
-        <meta name="description" content="You are cordially invited to celebrate the wedding of Pratibha and Saket. Join us for the Haldi, Mehndi, and Wedding ceremonies at Hotel Vighyan Mahal, Jabalpur." />
+        <title>विपिन & प्रिया विवाह निमंत्रण | अप्रैल 2026</title>
+        <meta name="description" content="आप सादर आमंत्रित हैं - विपिन और प्रिया के विवाह समारोह में। 28 अप्रैल 2026" />
       </head>
-
-      {/* Splash Screen */}
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       
       <main className="min-h-screen bg-gradient-to-br from-background via-marble to-background relative overflow-hidden">
         {/* Animated Background */}
@@ -47,15 +36,15 @@ const Index = () => {
           <section className="min-h-screen flex flex-col items-center justify-center px-4 py-16">
             <div className="w-full max-w-5xl">
               {/* Title Section */}
-              <div className="text-center mb-12 animate-fade-in">
+            <div className="text-center mb-12 animate-fade-in">
                 <div className="inline-block mb-4">
                   <p className="text-gold font-display text-xs md:text-sm tracking-[0.4em] uppercase mb-2">
-                    You Are Cordially Invited To
+                    आप सादर आमंत्रित हैं
                   </p>
                 </div>
                 
                 <h1 className="font-script text-6xl md:text-8xl lg:text-9xl text-royal-red mb-4 drop-shadow-lg">
-                  Pratibha & Saket
+                  विपिन & प्रिया
                 </h1>
                 
                 <div className="flex items-center justify-center gap-4 mb-6">
@@ -65,7 +54,7 @@ const Index = () => {
                 </div>
                 
                 <p className="font-display text-lg md:text-xl text-muted-foreground tracking-wider">
-                  Wedding Celebration
+                  शुभ विवाह
                 </p>
               </div>
 
@@ -86,78 +75,27 @@ const Index = () => {
 
           {/* Events Section */}
           <section className="py-16 md:py-24 px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
                 <p className="text-gold font-display text-xs md:text-sm tracking-[0.3em] uppercase mb-2">
-                  Celebration Schedule
+                  कार्यक्रम
                 </p>
                 <h2 className="font-script text-4xl md:text-6xl text-foreground">
-                  Wedding Events
+                  शुभ विवाह
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div className="flex justify-center">
                 <EventCard
-                  title="Haldi Ceremony"
-                  date="May 10, 2025"
-                  day="Thursday"
-                  time="12:00 PM"
-                  icon="🌼"
-                  description="Celebrate the auspicious turmeric ceremony"
+                  title="पाणिग्रहण संस्कार"
+                  titleEn="Wedding Ceremony"
+                  date="28 अप्रैल 2026"
+                  day="मंगलवार"
+                  time="शुभ मुहूर्त"
+                  icon="🔥"
+                  description="पवित्र विवाह समारोह में आपकी उपस्थिति प्रार्थनीय है"
                   delay={0}
                 />
-                <EventCard
-                  title="Mehndi Ceremony"
-                  date="May 11, 2025"
-                  day="Friday"
-                  time="12:00 PM"
-                  icon="✋"
-                  description="Join us for the beautiful mehndi festivities"
-                  delay={0.1}
-                />
-                <EventCard
-                  title="Panigrahan Sanskar"
-                  date="May 12, 2025"
-                  day="Saturday"
-                  time="Evening"
-                  icon="🔥"
-                  description="The sacred wedding ceremony"
-                  delay={0.2}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Venue Section */}
-          <section className="py-16 md:py-24 px-4 relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-royal-red/5 to-transparent" />
-            <div className="max-w-4xl mx-auto relative z-10">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-6">
-                  <MapPin className="w-8 h-8 text-gold" />
-                </div>
-                
-                <p className="text-gold font-display text-xs md:text-sm tracking-[0.3em] uppercase mb-2">
-                  Venue
-                </p>
-                
-                <h2 className="font-display text-2xl md:text-4xl text-foreground mb-4">
-                  Hotel Vighyan Mahal
-                </h2>
-                
-                <p className="text-muted-foreground font-display text-lg mb-8">
-                  Jabalpur, Madhya Pradesh
-                </p>
-
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-px w-16 bg-gold/50" />
-                  <span className="font-script text-3xl text-gold animate-gold-pulse">Sadar Aamantran</span>
-                  <div className="h-px w-16 bg-gold/50" />
-                </div>
-                
-                <p className="text-muted-foreground/80 font-script text-xl mt-4">
-                  We await your gracious presence
-                </p>
               </div>
             </div>
           </section>
@@ -172,11 +110,11 @@ const Index = () => {
               </div>
               
               <p className="text-muted-foreground text-xs font-display tracking-wider">
-                Created with love by Amantran 3D Invitation Studio
+                अमंत्रण 3D इन्विटेशन स्टूडियो
               </p>
               
               <p className="text-muted-foreground/60 text-xs font-display tracking-wider mt-2">
-                © 2025 Pratibha & Saket Wedding
+                © 2026 विपिन & प्रिया विवाह
               </p>
             </div>
           </footer>
@@ -188,6 +126,7 @@ const Index = () => {
 
 interface EventCardProps {
   title: string;
+  titleEn?: string;
   date: string;
   day: string;
   time: string;
@@ -196,7 +135,7 @@ interface EventCardProps {
   delay: number;
 }
 
-const EventCard = ({ title, date, day, time, icon, description, delay }: EventCardProps) => (
+const EventCard = ({ title, titleEn, date, day, time, icon, description, delay }: EventCardProps) => (
   <div 
     className="group relative animate-fade-in"
     style={{ animationDelay: `${delay}s` }}
@@ -216,9 +155,15 @@ const EventCard = ({ title, date, day, time, icon, description, delay }: EventCa
           {icon}
         </div>
         
-        <h3 className="font-display text-lg md:text-xl text-foreground mb-2">
+        <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">
           {title}
         </h3>
+        
+        {titleEn && (
+          <p className="text-gold/70 text-sm font-display mb-3">
+            {titleEn}
+          </p>
+        )}
         
         <p className="text-muted-foreground/80 text-sm mb-4">
           {description}

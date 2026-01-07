@@ -43,10 +43,10 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   const timeBlocks = [
-    { value: timeLeft.days, label: "Days" },
-    { value: timeLeft.hours, label: "Hours" },
-    { value: timeLeft.minutes, label: "Minutes" },
-    { value: timeLeft.seconds, label: "Seconds" },
+    { value: timeLeft.days, label: "दिन" },
+    { value: timeLeft.hours, label: "घंटे" },
+    { value: timeLeft.minutes, label: "मिनट" },
+    { value: timeLeft.seconds, label: "सेकंड" },
   ];
 
   if (!mounted) return null;
@@ -55,10 +55,10 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
     <div className="w-full max-w-4xl mx-auto px-4">
       <div className="text-center mb-6">
         <p className="text-gold font-display text-xs md:text-sm tracking-[0.3em] uppercase mb-2">
-          Counting Down To The Big Day
+          शुभ दिन की उल्टी गिनती
         </p>
         <h2 className="font-script text-3xl md:text-5xl text-foreground">
-          Save The Date
+          28 अप्रैल 2026
         </h2>
       </div>
 
