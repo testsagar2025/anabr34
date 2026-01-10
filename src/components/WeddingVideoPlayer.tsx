@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize, Minimize, SkipBack, SkipForward } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize, Minimize, SkipBack, SkipForward, Sparkles } from "lucide-react";
 import VideoBanner from "./VideoBanner";
 
 declare global {
@@ -284,19 +284,19 @@ const WeddingVideoPlayer = () => {
         isPlaying && setShowControls(false);
         setShowVolumeSlider(false);
       }}
-      className="relative rounded-xl overflow-hidden shadow-3d transform-3d hover:shadow-3d-hover transition-all duration-500"
+      className="relative rounded-2xl overflow-hidden shadow-3d transform-3d hover:shadow-3d-hover transition-all duration-500"
     >
       {/* 3D Frame Effect */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-gold via-gold-light to-gold rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity" />
-      <div className="absolute inset-0 bg-gradient-to-br from-royal-red-dark via-background to-royal-red-dark rounded-xl" />
+      <div className="absolute -inset-1 bg-gradient-to-r from-gold via-gold-light to-gold rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-br from-royal-red-dark via-background to-royal-red-dark rounded-2xl" />
       
       {/* Inner Container */}
-      <div className="relative z-10 rounded-xl overflow-hidden border-2 border-gold/50">
+      <div className="relative z-10 rounded-2xl overflow-hidden border-2 border-gold/60">
         {/* Corner 3D Decorations */}
-        <div className="absolute top-3 left-3 text-gold text-2xl z-30 pointer-events-none drop-shadow-gold animate-gold-pulse">✿</div>
-        <div className="absolute top-3 right-3 text-gold text-2xl z-30 pointer-events-none drop-shadow-gold animate-gold-pulse" style={{ animationDelay: "0.5s" }}>✿</div>
-        <div className="absolute bottom-16 left-3 text-gold text-2xl z-30 pointer-events-none drop-shadow-gold animate-gold-pulse" style={{ animationDelay: "1s" }}>✿</div>
-        <div className="absolute bottom-16 right-3 text-gold text-2xl z-30 pointer-events-none drop-shadow-gold animate-gold-pulse" style={{ animationDelay: "1.5s" }}>✿</div>
+        <div className="absolute top-3 left-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle">✿</div>
+        <div className="absolute top-3 right-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "0.5s" }}>✿</div>
+        <div className="absolute bottom-16 left-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1s" }}>✿</div>
+        <div className="absolute bottom-16 right-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1.5s" }}>✿</div>
 
         {/* Video Player */}
         <div className="relative aspect-video bg-gradient-to-br from-royal-red-dark to-background">
@@ -340,11 +340,73 @@ const WeddingVideoPlayer = () => {
             />
           )}
 
-          {/* Center Play Button (shown when paused) */}
+          {/* Netflix-style Pause Overlay */}
           {!isPlaying && isLoaded && !isBuffering && !showBanner && (
-            <div className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gold/90 flex items-center justify-center shadow-3d animate-scale-in backdrop-blur-sm">
-                <Play className="w-8 h-8 md:w-10 md:h-10 text-royal-red-dark ml-1" fill="currentColor" />
+            <div className="absolute inset-0 z-15 flex items-center justify-center bg-gradient-to-t from-black/80 via-black/40 to-black/60 animate-fade-in">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute top-8 left-8 text-gold/30 text-3xl animate-float">✿</div>
+              <div className="absolute top-12 right-12 text-gold/25 text-2xl animate-float-slow" style={{ animationDelay: "0.5s" }}>❀</div>
+              <div className="absolute bottom-20 left-12 text-gold/25 text-2xl animate-float" style={{ animationDelay: "1s" }}>✿</div>
+              <div className="absolute bottom-24 right-8 text-gold/30 text-3xl animate-float-slow" style={{ animationDelay: "1.5s" }}>❀</div>
+
+              {/* Content */}
+              <div className="relative text-center px-6 pointer-events-none">
+                {/* Decorative Frame */}
+                <div className="absolute -top-8 -left-8 text-gold/60 text-xl animate-twinkle">❧</div>
+                <div className="absolute -top-8 -right-8 text-gold/60 text-xl transform scale-x-[-1] animate-twinkle" style={{ animationDelay: "0.3s" }}>❧</div>
+                <div className="absolute -bottom-8 -left-8 text-gold/60 text-xl transform scale-y-[-1] animate-twinkle" style={{ animationDelay: "0.6s" }}>❧</div>
+                <div className="absolute -bottom-8 -right-8 text-gold/60 text-xl transform scale-[-1] animate-twinkle" style={{ animationDelay: "0.9s" }}>❧</div>
+
+                {/* Tagline */}
+                <div className="flex items-center justify-center gap-2 mb-3 animate-fade-in-down">
+                  <Sparkles className="w-3 h-3 text-gold/80 animate-twinkle" />
+                  <p className="text-gold/90 font-display text-xs tracking-[0.35em] uppercase">
+                    Paused
+                  </p>
+                  <Sparkles className="w-3 h-3 text-gold/80 animate-twinkle" style={{ animationDelay: "0.5s" }} />
+                </div>
+
+                {/* Couple Name */}
+                <h2 className="font-script text-4xl md:text-5xl lg:text-6xl text-cream mb-4 animate-fade-in-up drop-shadow-lg">
+                  Vipin & Priya
+                </h2>
+
+                {/* Decorative Line */}
+                <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
+                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/70" />
+                  <span className="text-gold text-sm animate-pulse-soft">✦</span>
+                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/70" />
+                </div>
+
+                {/* Play Button */}
+                <div className="pointer-events-auto">
+                  <button
+                    className="group/btn relative inline-flex items-center justify-center"
+                    onClick={togglePlay}
+                  >
+                    {/* Button Glow */}
+                    <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 bg-gold/40 rounded-full blur-xl group-hover/btn:bg-gold/60 transition-all duration-500 animate-glow" />
+                    
+                    {/* Button */}
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-gold via-gold-light to-gold-dark rounded-full flex items-center justify-center shadow-3d group-hover/btn:scale-110 group-hover/btn:shadow-3d-hover transition-all duration-300">
+                      <Play className="w-8 h-8 md:w-10 md:h-10 text-royal-red-dark ml-1" fill="currentColor" />
+                    </div>
+
+                    {/* Ripple Effect */}
+                    <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border-2 border-gold/50 rounded-full animate-ping opacity-40" />
+                  </button>
+                  
+                  <p className="text-cream/70 font-display text-xs tracking-wider mt-4 animate-bounce-gentle">
+                    Click to Resume
+                  </p>
+                </div>
               </div>
             </div>
           )}
@@ -353,7 +415,7 @@ const WeddingVideoPlayer = () => {
         {/* Custom Controls */}
         {!showBanner && (
           <div
-            className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 pt-12 transition-all duration-500 z-20 ${
+            className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 pt-14 transition-all duration-500 z-20 ${
               showControls ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
             }`}
           >
@@ -362,10 +424,10 @@ const WeddingVideoPlayer = () => {
               className="mb-4 group/progress cursor-pointer"
               onClick={handleProgressClick}
             >
-              <div className="relative h-1 bg-white/20 rounded-full overflow-visible group-hover/progress:h-1.5 transition-all">
-                <div className="absolute inset-y-0 left-0 bg-white/30 rounded-full" style={{ width: `${Math.min(progress + 10, 100)}%` }} />
+              <div className="relative h-1.5 bg-white/20 rounded-full overflow-visible group-hover/progress:h-2 transition-all">
+                <div className="absolute inset-y-0 left-0 bg-white/20 rounded-full" style={{ width: `${Math.min(progress + 10, 100)}%` }} />
                 <div
-                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-gold to-gold-light rounded-full"
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-gold to-gold-light rounded-full shadow-gold-glow"
                   style={{ width: `${progress}%` }}
                 />
                 <div 
@@ -373,7 +435,7 @@ const WeddingVideoPlayer = () => {
                   style={{ left: `${progress}%` }}
                 />
               </div>
-              <div className="flex justify-between mt-1 text-xs text-cream/60 font-display">
+              <div className="flex justify-between mt-2 text-xs text-cream/70 font-display tracking-wide">
                 <span>{formatTime(currentTime)}</span>
                 <span>{formatTime(duration)}</span>
               </div>
@@ -383,7 +445,7 @@ const WeddingVideoPlayer = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 md:gap-4">
                 <button
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold hover:bg-gold-light flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark hover:from-gold-light hover:to-gold flex items-center justify-center transition-all hover:scale-110 shadow-lg"
                   onClick={togglePlay}
                 >
                   {isPlaying ? (
@@ -394,14 +456,14 @@ const WeddingVideoPlayer = () => {
                 </button>
 
                 <button 
-                  className="p-2 text-cream/70 hover:text-gold transition-colors hover:scale-110"
+                  className="p-2 text-cream/80 hover:text-gold transition-all hover:scale-110"
                   onClick={() => skip(-10)}
                   title="Rewind 10 seconds"
                 >
                   <SkipBack className="w-5 h-5" />
                 </button>
                 <button 
-                  className="p-2 text-cream/70 hover:text-gold transition-colors hover:scale-110"
+                  className="p-2 text-cream/80 hover:text-gold transition-all hover:scale-110"
                   onClick={() => skip(10)}
                   title="Forward 10 seconds"
                 >
@@ -414,7 +476,7 @@ const WeddingVideoPlayer = () => {
                   onMouseLeave={() => setShowVolumeSlider(false)}
                 >
                   <button
-                    className="p-2 text-cream/70 hover:text-gold transition-colors"
+                    className="p-2 text-cream/80 hover:text-gold transition-all"
                     onClick={toggleMute}
                   >
                     {isMuted || volume === 0 ? (
@@ -431,19 +493,19 @@ const WeddingVideoPlayer = () => {
                       max="100"
                       value={isMuted ? 0 : volume}
                       onChange={handleVolumeChange}
-                      className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer accent-gold [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold"
+                      className="w-full h-1.5 bg-white/20 rounded-full appearance-none cursor-pointer accent-gold [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:shadow-lg"
                     />
                   </div>
                 </div>
 
-                <span className="hidden md:block text-cream/80 font-display text-sm">
+                <span className="hidden md:block text-cream/80 font-display text-sm tracking-wide">
                   {formatTime(currentTime)} / {formatTime(duration)}
                 </span>
               </div>
 
               <div className="flex items-center gap-2 md:gap-4">
                 <button
-                  className="p-2 text-cream/70 hover:text-gold transition-colors hover:scale-110"
+                  className="p-2 text-cream/80 hover:text-gold transition-all hover:scale-110"
                   onClick={toggleFullscreen}
                   title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
                 >
