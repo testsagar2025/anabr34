@@ -1,6 +1,11 @@
+import { Suspense, lazy } from 'react';
 import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
+import Parallax3DWrapper from "@/components/Parallax3DWrapper";
 import { Calendar, Heart, Sparkles } from "lucide-react";
+
+// Lazy load the 3D scene for better performance
+const Scene3D = lazy(() => import("@/components/Scene3D"));
 
 const Index = () => {
   // Wedding date: April 28, 2026
@@ -14,8 +19,13 @@ const Index = () => {
       </head>
       
       <main className="min-h-screen bg-background relative overflow-hidden">
+        {/* 3D Background Scene */}
+        <Suspense fallback={null}>
+          <Scene3D />
+        </Suspense>
+
         {/* Animated Background */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-cream via-background to-cream-dark opacity-80" />
           
@@ -34,40 +44,57 @@ const Index = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10">
+        <div className="relative" style={{ zIndex: 10 }}>
           {/* Hero Section */}
           <section className="min-h-screen flex flex-col items-center justify-center px-4 py-16">
             <div className="w-full max-w-5xl">
-              {/* Title Section */}
-              <div className="text-center mb-12">
-                <div className="inline-block mb-4 animate-fade-in-down">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Sparkles className="w-4 h-4 text-gold animate-twinkle" />
-                    <p className="text-gold font-display text-xs md:text-sm tracking-[0.4em] uppercase">
-                      You Are Cordially Invited To
-                    </p>
-                    <Sparkles className="w-4 h-4 text-gold animate-twinkle" style={{ animationDelay: "0.5s" }} />
+              {/* Title Section with 3D effect */}
+              <Parallax3DWrapper intensity={8} className="mb-12">
+                <div className="text-center">
+                  <div className="inline-block mb-4 animate-fade-in-down">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Sparkles className="w-4 h-4 text-gold animate-twinkle" />
+                      <p className="text-gold font-display text-xs md:text-sm tracking-[0.4em] uppercase">
+                        You Are Cordially Invited To
+                      </p>
+                      <Sparkles className="w-4 h-4 text-gold animate-twinkle" style={{ animationDelay: "0.5s" }} />
+                    </div>
                   </div>
+                  
+                  <h1 className="font-script text-6xl md:text-8xl lg:text-9xl text-royal-red mb-6 drop-shadow-lg animate-fade-in-up text-shadow-elegant title-3d" style={{ animationDelay: "0.2s" }}>
+                    Vipin & Priya
+                  </h1>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+                    <div className="h-px w-16 md:w-28 bg-gradient-to-r from-transparent via-gold to-gold" />
+                    <Heart className="w-6 h-6 text-gold animate-pulse-soft" fill="currentColor" />
+                    <div className="h-px w-16 md:w-28 bg-gradient-to-l from-transparent via-gold to-gold" />
+                  </div>
+                  
+                  <p className="font-display text-lg md:text-xl text-muted-foreground tracking-wider animate-fade-in" style={{ animationDelay: "0.5s" }}>
+                    Wedding Celebration
+                  </p>
                 </div>
-                
-                <h1 className="font-script text-6xl md:text-8xl lg:text-9xl text-royal-red mb-6 drop-shadow-lg animate-fade-in-up text-shadow-elegant" style={{ animationDelay: "0.2s" }}>
-                  Vipin & Priya
-                </h1>
-                
-                <div className="flex items-center justify-center gap-4 mb-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-                  <div className="h-px w-16 md:w-28 bg-gradient-to-r from-transparent via-gold to-gold" />
-                  <Heart className="w-6 h-6 text-gold animate-pulse-soft" fill="currentColor" />
-                  <div className="h-px w-16 md:w-28 bg-gradient-to-l from-transparent via-gold to-gold" />
-                </div>
-                
-                <p className="font-display text-lg md:text-xl text-muted-foreground tracking-wider animate-fade-in" style={{ animationDelay: "0.5s" }}>
-                  Wedding Celebration
-                </p>
-              </div>
+              </Parallax3DWrapper>
 
-              {/* Video Player */}
+              {/* Video Player with 3D pop-out effect */}
               <div className="mb-16 animate-slide-up" style={{ animationDelay: "0.6s" }}>
-                <WeddingVideoPlayer />
+                <Parallax3DWrapper intensity={12} perspective={1500} popOut className="video-3d-container">
+                  <div className="video-3d-wrapper">
+                    {/* 3D Shadow layers */}
+                    <div className="video-shadow-layer video-shadow-1" />
+                    <div className="video-shadow-layer video-shadow-2" />
+                    <div className="video-shadow-layer video-shadow-3" />
+                    
+                    {/* Main video */}
+                    <div className="video-main-layer">
+                      <WeddingVideoPlayer />
+                    </div>
+                    
+                    {/* 3D Frame overlay */}
+                    <div className="video-frame-3d" />
+                  </div>
+                </Parallax3DWrapper>
               </div>
             </div>
           </section>
@@ -76,37 +103,43 @@ const Index = () => {
           <section className="py-20 md:py-28 relative">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/60 to-transparent" />
             <div className="relative z-10">
-              <CountdownTimer targetDate={weddingDate} />
+              <Parallax3DWrapper intensity={5}>
+                <CountdownTimer targetDate={weddingDate} />
+              </Parallax3DWrapper>
             </div>
           </section>
 
           {/* Events Section */}
           <section className="py-20 md:py-28 px-4">
             <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-14">
-                <p className="text-gold font-display text-xs md:text-sm tracking-[0.35em] uppercase mb-3 animate-fade-in">
-                  The Celebration
-                </p>
-                <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                  Wedding Day
-                </h2>
-                <div className="flex items-center justify-center gap-3 mt-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/60" />
-                  <span className="text-gold text-lg">✦</span>
-                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/60" />
+              <Parallax3DWrapper intensity={6}>
+                <div className="text-center mb-14">
+                  <p className="text-gold font-display text-xs md:text-sm tracking-[0.35em] uppercase mb-3 animate-fade-in">
+                    The Celebration
+                  </p>
+                  <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-foreground animate-fade-in-up title-3d" style={{ animationDelay: "0.1s" }}>
+                    Wedding Day
+                  </h2>
+                  <div className="flex items-center justify-center gap-3 mt-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                    <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/60" />
+                    <span className="text-gold text-lg">✦</span>
+                    <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/60" />
+                  </div>
                 </div>
-              </div>
+              </Parallax3DWrapper>
 
               <div className="flex justify-center">
-                <EventCard
-                  title="Wedding Ceremony"
-                  date="April 28, 2026"
-                  day="Tuesday"
-                  time="Auspicious Hour"
-                  icon="🔥"
-                  description="Your gracious presence is requested at the sacred wedding ceremony"
-                  delay={0.3}
-                />
+                <Parallax3DWrapper intensity={10} popOut>
+                  <EventCard
+                    title="Wedding Ceremony"
+                    date="April 28, 2026"
+                    day="Tuesday"
+                    time="Auspicious Hour"
+                    icon="🔥"
+                    description="Your gracious presence is requested at the sacred wedding ceremony"
+                    delay={0.3}
+                  />
+                </Parallax3DWrapper>
               </div>
             </div>
           </section>
@@ -154,7 +187,7 @@ const EventCard = ({ title, date, day, time, icon, description, delay }: EventCa
     <div className="absolute -inset-2 bg-gradient-to-br from-gold/25 via-gold-light/15 to-gold/25 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
     
     {/* Card */}
-    <div className="relative elegant-card rounded-2xl p-8 md:p-10 text-center group-hover:shadow-3d-hover transition-all duration-500 group-hover:-translate-y-2 overflow-hidden">
+    <div className="relative elegant-card rounded-2xl p-8 md:p-10 text-center group-hover:shadow-3d-hover transition-all duration-500 group-hover:-translate-y-2 overflow-hidden card-3d">
       {/* Decorative Corners */}
       <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-tl-2xl transition-colors duration-500" />
       <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-tr-2xl transition-colors duration-500" />
