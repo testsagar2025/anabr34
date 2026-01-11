@@ -316,4 +316,90 @@
   .text-shadow-elegant {
     text-shadow: 0 2px 20px hsla(0, 0%, 0%, 0.15);
   }
+
+  /* 3D Title effect */
+  .title-3d {
+    text-shadow: 
+      0 1px 0 hsla(345, 60%, 28%, 0.8),
+      0 2px 0 hsla(345, 60%, 26%, 0.7),
+      0 3px 0 hsla(345, 60%, 24%, 0.6),
+      0 4px 0 hsla(345, 60%, 22%, 0.5),
+      0 5px 0 hsla(345, 60%, 20%, 0.4),
+      0 6px 5px hsla(0, 0%, 0%, 0.2),
+      0 10px 20px hsla(0, 0%, 0%, 0.15);
+  }
+
+  /* 3D Card effect */
+  .card-3d {
+    transform-style: preserve-3d;
+    box-shadow: 
+      0 2px 5px hsla(0, 0%, 0%, 0.1),
+      0 10px 20px hsla(0, 0%, 0%, 0.1),
+      0 20px 40px hsla(0, 0%, 0%, 0.15),
+      inset 0 1px 0 hsla(45, 85%, 50%, 0.1);
+  }
+
+  /* Video 3D wrapper styles */
+  .video-3d-container {
+    perspective: 2000px;
+  }
+
+  .video-3d-wrapper {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    transition: transform 0.4s ease-out;
+  }
+
+  .video-3d-wrapper:hover {
+    transform: translateZ(30px);
+  }
+
+  .video-shadow-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    pointer-events: none;
+  }
+
+  .video-shadow-1 {
+    transform: translateZ(-10px) scale(0.98);
+    background: linear-gradient(135deg, hsla(345, 60%, 20%, 0.8), hsla(345, 60%, 15%, 0.9));
+    box-shadow: 0 20px 50px hsla(0, 0%, 0%, 0.4);
+  }
+
+  .video-shadow-2 {
+    transform: translateZ(-20px) scale(0.96);
+    background: linear-gradient(135deg, hsla(345, 60%, 15%, 0.7), hsla(345, 60%, 10%, 0.8));
+    box-shadow: 0 30px 60px hsla(0, 0%, 0%, 0.3);
+  }
+
+  .video-shadow-3 {
+    transform: translateZ(-30px) scale(0.94);
+    background: linear-gradient(135deg, hsla(345, 60%, 10%, 0.6), hsla(345, 60%, 5%, 0.7));
+    box-shadow: 0 40px 80px hsla(0, 0%, 0%, 0.2);
+  }
+
+  .video-main-layer {
+    position: relative;
+    transform: translateZ(20px);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 
+      0 25px 50px -12px hsla(0, 0%, 0%, 0.4),
+      0 0 0 1px hsla(45, 85%, 50%, 0.3),
+      inset 0 0 30px hsla(45, 85%, 50%, 0.05);
+  }
+
+  .video-frame-3d {
+    position: absolute;
+    inset: -4px;
+    border: 3px solid hsla(45, 85%, 50%, 0.4);
+    border-radius: 1.25rem;
+    pointer-events: none;
+    transform: translateZ(25px);
+    box-shadow: 
+      0 0 30px hsla(45, 85%, 50%, 0.2),
+      inset 0 0 20px hsla(45, 85%, 50%, 0.1);
+  }
 }
