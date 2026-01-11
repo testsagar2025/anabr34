@@ -332,11 +332,12 @@ const WeddingVideoPlayer = () => {
             </div>
           )}
 
-          {/* Click to Play/Pause Overlay */}
+          {/* Click to Play/Pause, Double-click for Fullscreen */}
           {!showBanner && (
             <div 
               className="absolute inset-0 z-10 cursor-pointer"
               onClick={togglePlay}
+              onDoubleClick={toggleFullscreen}
             />
           )}
 

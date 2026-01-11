@@ -3,6 +3,8 @@ import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
 import Parallax3DWrapper from "@/components/Parallax3DWrapper";
 import { Calendar, Heart, Sparkles } from "lucide-react";
+import ganeshaImage from "@/assets/ganesha.png";
+import shlokImage from "@/assets/shlok.png";
 
 // Lazy load the 3D scene for better performance
 const Scene3D = lazy(() => import("@/components/Scene3D"));
@@ -48,6 +50,42 @@ const Index = () => {
           {/* Hero Section */}
           <section className="min-h-screen flex flex-col items-center justify-center px-4 py-16">
             <div className="w-full max-w-5xl">
+              {/* Ganesha & Shlok Section */}
+              <Parallax3DWrapper intensity={6} className="mb-8">
+                <div className="text-center animate-fade-in-down">
+                  {/* Ganesha Image */}
+                  <div className="relative inline-block mb-4">
+                    <div className="absolute inset-0 bg-gold/20 blur-2xl rounded-full animate-glow" />
+                    <img 
+                      src={ganeshaImage} 
+                      alt="Lord Ganesha" 
+                      className="relative w-24 h-24 md:w-32 md:h-32 object-contain mx-auto drop-shadow-gold animate-float"
+                      style={{ filter: 'drop-shadow(0 0 20px hsla(45, 85%, 50%, 0.4))' }}
+                    />
+                  </div>
+                  
+                  {/* Shlok Image */}
+                  <div className="relative max-w-md md:max-w-lg mx-auto mb-6">
+                    <img 
+                      src={shlokImage} 
+                      alt="Vakratunda Mahakaya Shlok" 
+                      className="w-full h-auto object-contain"
+                      style={{ 
+                        filter: 'drop-shadow(0 2px 10px hsla(345, 60%, 32%, 0.3))',
+                        maxHeight: '80px'
+                      }}
+                    />
+                  </div>
+
+                  {/* Decorative Divider */}
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-gold/60" />
+                    <span className="text-gold text-sm animate-twinkle">✦</span>
+                    <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-gold/60" />
+                  </div>
+                </div>
+              </Parallax3DWrapper>
+
               {/* Title Section with 3D effect */}
               <Parallax3DWrapper intensity={8} className="mb-12">
                 <div className="text-center">
