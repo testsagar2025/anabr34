@@ -342,70 +342,111 @@ const WeddingVideoPlayer = () => {
 
           {/* Netflix-style Pause Overlay */}
           {!isPlaying && isLoaded && !isBuffering && !showBanner && (
-            <div className="absolute inset-0 z-15 flex items-center justify-center bg-gradient-to-t from-black/80 via-black/40 to-black/60 animate-fade-in">
+            <div className="absolute inset-0 z-15 flex items-center justify-center overflow-hidden">
+              {/* Animated Background Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-royal-red-dark/95 via-royal-red-dark/60 to-royal-red-dark/80 animate-fade-in" />
+              
+              {/* Cinematic Vignette */}
+              <div className="absolute inset-0" style={{
+                background: 'radial-gradient(ellipse at center, transparent 20%, hsl(345 65% 12% / 0.8) 100%)'
+              }} />
+
               {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.5'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm40 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                 }} />
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute top-8 left-8 text-gold/30 text-3xl animate-float">✿</div>
-              <div className="absolute top-12 right-12 text-gold/25 text-2xl animate-float-slow" style={{ animationDelay: "0.5s" }}>❀</div>
-              <div className="absolute bottom-20 left-12 text-gold/25 text-2xl animate-float" style={{ animationDelay: "1s" }}>✿</div>
-              <div className="absolute bottom-24 right-8 text-gold/30 text-3xl animate-float-slow" style={{ animationDelay: "1.5s" }}>❀</div>
+              {/* Floating Floral Elements */}
+              <div className="absolute top-6 left-6 text-gold text-4xl animate-float opacity-60" style={{ animationDuration: '4s' }}>✿</div>
+              <div className="absolute top-10 right-10 text-gold text-3xl animate-float-slow opacity-50" style={{ animationDelay: '0.5s' }}>❀</div>
+              <div className="absolute bottom-24 left-10 text-gold text-3xl animate-float opacity-50" style={{ animationDelay: '1s' }}>✿</div>
+              <div className="absolute bottom-28 right-6 text-gold text-4xl animate-float-slow opacity-60" style={{ animationDelay: '1.5s' }}>❀</div>
+              <div className="absolute top-1/4 left-1/4 text-gold text-2xl animate-twinkle opacity-40" style={{ animationDelay: '0.8s' }}>✦</div>
+              <div className="absolute bottom-1/3 right-1/4 text-gold text-2xl animate-twinkle opacity-40" style={{ animationDelay: '1.2s' }}>✦</div>
 
-              {/* Content */}
-              <div className="relative text-center px-6 pointer-events-none">
-                {/* Decorative Frame */}
-                <div className="absolute -top-8 -left-8 text-gold/60 text-xl animate-twinkle">❧</div>
-                <div className="absolute -top-8 -right-8 text-gold/60 text-xl transform scale-x-[-1] animate-twinkle" style={{ animationDelay: "0.3s" }}>❧</div>
-                <div className="absolute -bottom-8 -left-8 text-gold/60 text-xl transform scale-y-[-1] animate-twinkle" style={{ animationDelay: "0.6s" }}>❧</div>
-                <div className="absolute -bottom-8 -right-8 text-gold/60 text-xl transform scale-[-1] animate-twinkle" style={{ animationDelay: "0.9s" }}>❧</div>
+              {/* Shimmer Lines */}
+              <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-gold/20 to-transparent animate-shimmer" />
+              <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-gold/20 to-transparent animate-shimmer" style={{ animationDelay: '1s' }} />
 
-                {/* Tagline */}
-                <div className="flex items-center justify-center gap-2 mb-3 animate-fade-in-down">
-                  <Sparkles className="w-3 h-3 text-gold/80 animate-twinkle" />
-                  <p className="text-gold/90 font-display text-xs tracking-[0.35em] uppercase">
-                    Paused
-                  </p>
-                  <Sparkles className="w-3 h-3 text-gold/80 animate-twinkle" style={{ animationDelay: "0.5s" }} />
+              {/* Content Container */}
+              <div className="relative text-center px-8 py-6">
+                {/* Ornate Frame */}
+                <div className="absolute -inset-6 border border-gold/30 rounded-lg" />
+                <div className="absolute -inset-8 border border-gold/15 rounded-xl" />
+                
+                {/* Corner Ornaments */}
+                <div className="absolute -top-10 -left-10 text-gold text-2xl animate-twinkle" style={{ animationDelay: '0s' }}>❧</div>
+                <div className="absolute -top-10 -right-10 text-gold text-2xl transform scale-x-[-1] animate-twinkle" style={{ animationDelay: '0.3s' }}>❧</div>
+                <div className="absolute -bottom-10 -left-10 text-gold text-2xl transform scale-y-[-1] animate-twinkle" style={{ animationDelay: '0.6s' }}>❧</div>
+                <div className="absolute -bottom-10 -right-10 text-gold text-2xl transform scale-[-1] animate-twinkle" style={{ animationDelay: '0.9s' }}>❧</div>
+
+                {/* Paused Badge */}
+                <div className="flex items-center justify-center gap-3 mb-4 animate-fade-in-down">
+                  <div className="h-px w-8 bg-gradient-to-r from-transparent to-gold" />
+                  <div className="flex items-center gap-2 px-4 py-1.5 bg-gold/10 border border-gold/40 rounded-full backdrop-blur-sm">
+                    <Pause className="w-3 h-3 text-gold animate-pulse-soft" fill="currentColor" />
+                    <p className="text-gold font-display text-xs tracking-[0.4em] uppercase font-medium">
+                      Paused
+                    </p>
+                    <Pause className="w-3 h-3 text-gold animate-pulse-soft" fill="currentColor" style={{ animationDelay: '0.5s' }} />
+                  </div>
+                  <div className="h-px w-8 bg-gradient-to-l from-transparent to-gold" />
                 </div>
 
-                {/* Couple Name */}
-                <h2 className="font-script text-4xl md:text-5xl lg:text-6xl text-cream mb-4 animate-fade-in-up drop-shadow-lg">
-                  Vipin & Priya
+                {/* Wedding Invitation Text */}
+                <p className="text-gold/80 font-display text-xs md:text-sm tracking-[0.3em] uppercase mb-3 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  Wedding Invitation
+                </p>
+
+                {/* Couple Name - Maroon with Gold Glow */}
+                <h2 className="font-script text-5xl md:text-6xl lg:text-7xl mb-2 animate-fade-in-scale" style={{ animationDelay: '0.2s' }}>
+                  <span className="text-gradient-gold drop-shadow-[0_4px_20px_hsla(45,85%,50%,0.5)]">
+                    Vipin & Priya
+                  </span>
                 </h2>
 
-                {/* Decorative Line */}
-                <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
-                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/70" />
-                  <span className="text-gold text-sm animate-pulse-soft">✦</span>
-                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/70" />
+                {/* Decorative Divider */}
+                <div className="flex items-center justify-center gap-4 mb-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold/60 to-gold" />
+                  <span className="text-gold text-lg animate-pulse-soft">✦</span>
+                  <div className="h-px w-16 bg-gradient-to-l from-transparent via-gold/60 to-gold" />
                 </div>
 
-                {/* Play Button */}
-                <div className="pointer-events-auto">
+                {/* Play Button with Enhanced Animation */}
+                <div className="pointer-events-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                   <button
-                    className="group/btn relative inline-flex items-center justify-center"
+                    className="group/btn relative inline-flex items-center justify-center focus:outline-none"
                     onClick={togglePlay}
                   >
-                    {/* Button Glow */}
-                    <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 bg-gold/40 rounded-full blur-xl group-hover/btn:bg-gold/60 transition-all duration-500 animate-glow" />
+                    {/* Multi-layer Glow */}
+                    <div className="absolute w-24 h-24 md:w-28 md:h-28 bg-gold/20 rounded-full blur-2xl group-hover/btn:bg-gold/40 transition-all duration-700 animate-glow" />
+                    <div className="absolute w-20 h-20 md:w-24 md:h-24 bg-gold/30 rounded-full blur-xl group-hover/btn:bg-gold/50 transition-all duration-500 animate-glow" style={{ animationDelay: '0.5s' }} />
                     
-                    {/* Button */}
-                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-gold via-gold-light to-gold-dark rounded-full flex items-center justify-center shadow-3d group-hover/btn:scale-110 group-hover/btn:shadow-3d-hover transition-all duration-300">
-                      <Play className="w-8 h-8 md:w-10 md:h-10 text-royal-red-dark ml-1" fill="currentColor" />
+                    {/* Outer Ring Pulse */}
+                    <div className="absolute w-24 h-24 md:w-28 md:h-28 border-2 border-gold/40 rounded-full animate-ping opacity-30" />
+                    <div className="absolute w-20 h-20 md:w-24 md:h-24 border border-gold/60 rounded-full animate-pulse-soft" />
+                    
+                    {/* Button Base */}
+                    <div className="relative w-18 h-18 md:w-22 md:h-22 bg-gradient-to-br from-gold via-gold-light to-gold-dark rounded-full flex items-center justify-center shadow-[0_8px_32px_-4px_hsla(45,85%,50%,0.6)] group-hover/btn:shadow-[0_12px_40px_-4px_hsla(45,85%,50%,0.8)] group-hover/btn:scale-110 transition-all duration-300 ease-out">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-gold-light via-gold to-gold-dark rounded-full flex items-center justify-center border-2 border-gold-light/50">
+                        <Play className="w-7 h-7 md:w-9 md:h-9 text-royal-red-dark ml-1 drop-shadow-sm" fill="currentColor" />
+                      </div>
                     </div>
-
-                    {/* Ripple Effect */}
-                    <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border-2 border-gold/50 rounded-full animate-ping opacity-40" />
                   </button>
                   
-                  <p className="text-cream/70 font-display text-xs tracking-wider mt-4 animate-bounce-gentle">
-                    Click to Resume
+                  {/* Resume Text */}
+                  <p className="text-gold/90 font-display text-xs tracking-[0.2em] uppercase mt-5 animate-bounce-gentle">
+                    Tap to Resume
                   </p>
+                </div>
+
+                {/* Bottom Decorative Element */}
+                <div className="flex items-center justify-center gap-2 mt-6 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                  <Sparkles className="w-3 h-3 text-gold/60 animate-twinkle" />
+                  <span className="text-gold/50 font-display text-[10px] tracking-widest uppercase">Wedding Celebration</span>
+                  <Sparkles className="w-3 h-3 text-gold/60 animate-twinkle" style={{ animationDelay: '0.5s' }} />
                 </div>
               </div>
             </div>
@@ -444,15 +485,25 @@ const WeddingVideoPlayer = () => {
             {/* Controls Row */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 md:gap-4">
+                {/* Play/Pause Button with Animation */}
                 <button
-                  className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark hover:from-gold-light hover:to-gold flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                  className="group/play relative w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark hover:from-gold-light hover:to-gold flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-[0_4px_20px_-2px_hsla(45,85%,50%,0.6)] active:scale-95"
                   onClick={togglePlay}
                 >
-                  {isPlaying ? (
-                    <Pause className="w-5 h-5 text-royal-red-dark" fill="currentColor" />
-                  ) : (
-                    <Play className="w-5 h-5 text-royal-red-dark ml-0.5" fill="currentColor" />
-                  )}
+                  {/* Inner glow on hover */}
+                  <div className="absolute inset-0 rounded-full bg-gold-light/0 group-hover/play:bg-gold-light/30 transition-all duration-300" />
+                  
+                  {/* Icon with smooth transition */}
+                  <div className="relative flex items-center justify-center w-full h-full">
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5 text-royal-red-dark transition-transform duration-200 group-hover/play:scale-110" fill="currentColor" />
+                    ) : (
+                      <Play className="w-5 h-5 text-royal-red-dark ml-0.5 transition-transform duration-200 group-hover/play:scale-110" fill="currentColor" />
+                    )}
+                  </div>
+                  
+                  {/* Ripple effect indicator */}
+                  <div className="absolute inset-0 rounded-full border-2 border-gold/0 group-hover/play:border-gold/40 transition-all duration-300 group-active/play:scale-125 group-active/play:opacity-0" />
                 </button>
 
                 <button 
