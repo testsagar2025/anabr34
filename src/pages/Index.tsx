@@ -54,93 +54,67 @@ const Index = () => {
               <Parallax3DWrapper intensity={8} className="mb-10">
                 <div className="ganesha-section text-center">
                   {/* Outer Decorative Frame */}
-                  <div className="relative inline-block p-8 md:p-12">
-                    {/* Animated Corner Ornaments */}
-                    <div className="absolute top-0 left-0 w-16 h-16 md:w-20 md:h-20 border-t-2 border-l-2 border-gold/50 rounded-tl-3xl animate-border-glow" />
-                    <div className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20 border-t-2 border-r-2 border-gold/50 rounded-tr-3xl animate-border-glow" style={{ animationDelay: "0.3s" }} />
-                    <div className="absolute bottom-0 left-0 w-16 h-16 md:w-20 md:h-20 border-b-2 border-l-2 border-gold/50 rounded-bl-3xl animate-border-glow" style={{ animationDelay: "0.6s" }} />
-                    <div className="absolute bottom-0 right-0 w-16 h-16 md:w-20 md:h-20 border-b-2 border-r-2 border-gold/50 rounded-br-3xl animate-border-glow" style={{ animationDelay: "0.9s" }} />
+                  <div className="relative inline-block p-6 md:p-10">
+                    {/* Elegant Border Frame */}
+                    <div className="absolute inset-0 border border-gold/30 rounded-2xl" />
+                    <div className="absolute inset-2 border border-gold/20 rounded-xl" />
                     
-                    {/* Floating Sparkles */}
-                    <div className="absolute top-4 left-8 text-gold/40 text-xs animate-sparkle-float">✦</div>
-                    <div className="absolute top-6 right-10 text-gold/30 text-sm animate-sparkle-float" style={{ animationDelay: "1s" }}>✧</div>
-                    <div className="absolute bottom-8 left-6 text-gold/35 text-xs animate-sparkle-float" style={{ animationDelay: "0.5s" }}>✦</div>
-                    <div className="absolute bottom-6 right-8 text-gold/40 text-sm animate-sparkle-float" style={{ animationDelay: "1.5s" }}>✧</div>
+                    {/* Corner Ornaments */}
+                    <div className="absolute -top-1 -left-1 w-8 h-8 md:w-10 md:h-10">
+                      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold to-transparent" />
+                      <div className="absolute top-0 left-0 h-full w-0.5 bg-gradient-to-b from-gold to-transparent" />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-8 h-8 md:w-10 md:h-10">
+                      <div className="absolute top-0 right-0 w-full h-0.5 bg-gradient-to-l from-gold to-transparent" />
+                      <div className="absolute top-0 right-0 h-full w-0.5 bg-gradient-to-b from-gold to-transparent" />
+                    </div>
+                    <div className="absolute -bottom-1 -left-1 w-8 h-8 md:w-10 md:h-10">
+                      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold to-transparent" />
+                      <div className="absolute bottom-0 left-0 h-full w-0.5 bg-gradient-to-t from-gold to-transparent" />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-8 h-8 md:w-10 md:h-10">
+                      <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-gold to-transparent" />
+                      <div className="absolute bottom-0 right-0 h-full w-0.5 bg-gradient-to-t from-gold to-transparent" />
+                    </div>
 
                     {/* Ganesha Container */}
-                    <div className="relative mb-6 animate-divine-entrance">
-                      {/* Multi-layer Glow Effect */}
+                    <div className="relative mb-5 animate-divine-entrance">
+                      {/* Soft Glow Effect */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-40 h-40 md:w-52 md:h-52 bg-gradient-radial from-gold/30 via-gold/10 to-transparent rounded-full blur-3xl animate-pulse-glow" />
-                      </div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-radial from-orange-400/20 to-transparent rounded-full blur-2xl animate-pulse-glow" style={{ animationDelay: "0.5s" }} />
+                        <div className="w-36 h-36 md:w-44 md:h-44 bg-gradient-radial from-gold/25 via-gold/10 to-transparent rounded-full blur-2xl animate-pulse-glow" />
                       </div>
                       
-                      {/* Rotating Mandala Ring */}
+                      {/* Subtle Ring */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-36 h-36 md:w-44 md:h-44 border border-gold/20 rounded-full animate-spin-slow" />
-                        <div className="absolute w-40 h-40 md:w-48 md:h-48 border border-dashed border-gold/15 rounded-full animate-spin-reverse" />
+                        <div className="w-32 h-32 md:w-40 md:h-40 border border-gold/15 rounded-full" />
                       </div>
                       
                       {/* Ganesha Image */}
-                      <div className="relative z-10">
+                      <div className="relative z-10 py-2">
                         <img 
                           src={ganeshaImage} 
-                          alt="Lord Ganesha - Remover of Obstacles" 
-                          className="relative w-28 h-28 md:w-36 md:h-36 object-contain mx-auto ganesha-image animate-float"
+                          alt="Lord Ganesha" 
+                          className="relative w-24 h-24 md:w-32 md:h-32 object-contain mx-auto ganesha-image animate-float"
                         />
                       </div>
-                      
-                      {/* Divine Light Rays */}
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div className="divine-rays" />
-                      </div>
-                    </div>
-
-                    {/* Shubh Labh Text */}
-                    <div className="flex items-center justify-center gap-6 md:gap-10 mb-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-                      <span className="text-gold font-script text-2xl md:text-3xl text-shadow-gold animate-shimmer-text">शुभ</span>
-                      <div className="w-8 h-px bg-gradient-to-r from-gold/40 via-gold to-gold/40" />
-                      <span className="text-gold font-script text-2xl md:text-3xl text-shadow-gold animate-shimmer-text" style={{ animationDelay: "0.2s" }}>लाभ</span>
                     </div>
 
                     {/* Shlok Container */}
-                    <div className="relative max-w-sm md:max-w-md mx-auto mb-6 animate-shlok-reveal" style={{ animationDelay: "0.5s" }}>
-                      {/* Decorative Lines */}
-                      <div className="absolute -top-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-                      <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-                      
-                      <div className="py-4 px-2">
-                        <img 
-                          src={shlokImage} 
-                          alt="वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ - Vakratunda Mahakaya" 
-                          className="w-full h-auto object-contain shlok-image mx-auto"
-                          style={{ maxHeight: '70px' }}
-                        />
-                      </div>
+                    <div className="relative max-w-xs md:max-w-sm mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                      <img 
+                        src={shlokImage} 
+                        alt="Vakratunda Mahakaya Shlok" 
+                        className="w-full h-auto object-contain shlok-image mx-auto"
+                        style={{ maxHeight: '60px' }}
+                      />
                     </div>
 
-                    {/* Ornate Divider */}
-                    <div className="flex items-center justify-center gap-3 animate-fade-in" style={{ animationDelay: "0.7s" }}>
-                      <div className="flex items-center gap-1">
-                        <span className="text-gold/50 text-xs">❧</span>
-                        <div className="h-px w-10 md:w-16 bg-gradient-to-r from-transparent via-gold/60 to-gold" />
-                      </div>
-                      <div className="relative">
-                        <span className="text-gold text-lg animate-twinkle">✦</span>
-                        <span className="absolute inset-0 text-gold text-lg animate-ping-slow opacity-50">✦</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <div className="h-px w-10 md:w-16 bg-gradient-to-l from-transparent via-gold/60 to-gold" />
-                        <span className="text-gold/50 text-xs">❧</span>
-                      </div>
+                    {/* Simple Divider */}
+                    <div className="flex items-center justify-center gap-3 mt-5 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+                      <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-gold/50" />
+                      <span className="text-gold text-sm">✦</span>
+                      <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-gold/50" />
                     </div>
-
-                    {/* Mangal Text */}
-                    <p className="text-gold/70 font-display text-xs tracking-[0.3em] uppercase mt-4 animate-fade-in" style={{ animationDelay: "0.9s" }}>
-                      ॥ शुभ विवाह ॥
-                    </p>
                   </div>
                 </div>
               </Parallax3DWrapper>
