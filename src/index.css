@@ -403,3 +403,199 @@
       inset 0 0 20px hsla(45, 85%, 50%, 0.1);
   }
 }
+
+  /* ===== Ganesha Section Styles ===== */
+  .ganesha-section {
+    position: relative;
+  }
+
+  .ganesha-image {
+    filter: 
+      drop-shadow(0 0 30px hsla(45, 85%, 50%, 0.5))
+      drop-shadow(0 0 60px hsla(45, 85%, 50%, 0.3))
+      drop-shadow(0 5px 15px hsla(0, 0%, 0%, 0.2));
+    animation: ganesha-glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes ganesha-glow {
+    0% {
+      filter: 
+        drop-shadow(0 0 25px hsla(45, 85%, 50%, 0.4))
+        drop-shadow(0 0 50px hsla(45, 85%, 50%, 0.2))
+        drop-shadow(0 5px 15px hsla(0, 0%, 0%, 0.2));
+    }
+    100% {
+      filter: 
+        drop-shadow(0 0 40px hsla(45, 85%, 50%, 0.6))
+        drop-shadow(0 0 80px hsla(45, 85%, 50%, 0.4))
+        drop-shadow(0 5px 20px hsla(0, 0%, 0%, 0.25));
+    }
+  }
+
+  .shlok-image {
+    filter: 
+      drop-shadow(0 2px 8px hsla(345, 60%, 32%, 0.25))
+      drop-shadow(0 0 20px hsla(345, 60%, 32%, 0.15));
+  }
+
+  /* Divine Light Rays */
+  .divine-rays {
+    width: 180px;
+    height: 180px;
+    background: 
+      conic-gradient(from 0deg, 
+        transparent 0deg, 
+        hsla(45, 85%, 50%, 0.1) 10deg, 
+        transparent 20deg,
+        transparent 30deg,
+        hsla(45, 85%, 50%, 0.08) 40deg,
+        transparent 50deg,
+        transparent 60deg,
+        hsla(45, 85%, 50%, 0.1) 70deg,
+        transparent 80deg
+      );
+    border-radius: 50%;
+    animation: divine-rotate 20s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes divine-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Animations */
+  @keyframes divine-entrance {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(-20px);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05) translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-divine-entrance {
+    animation: divine-entrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes shlok-reveal {
+    0% {
+      opacity: 0;
+      transform: scaleX(0.8);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+      filter: blur(0);
+    }
+  }
+
+  .animate-shlok-reveal {
+    animation: shlok-reveal 0.8s ease-out forwards;
+  }
+
+  @keyframes border-glow {
+    0%, 100% {
+      border-color: hsla(45, 85%, 50%, 0.3);
+      box-shadow: 0 0 5px hsla(45, 85%, 50%, 0.1);
+    }
+    50% {
+      border-color: hsla(45, 85%, 50%, 0.7);
+      box-shadow: 0 0 15px hsla(45, 85%, 50%, 0.3);
+    }
+  }
+
+  .animate-border-glow {
+    animation: border-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes sparkle-float {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      opacity: 0.8;
+      transform: translateY(-8px) rotate(45deg);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-4px) rotate(90deg);
+    }
+    75% {
+      opacity: 0.9;
+      transform: translateY(-10px) rotate(135deg);
+    }
+  }
+
+  .animate-sparkle-float {
+    animation: sparkle-float 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 30s linear infinite;
+  }
+
+  @keyframes spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  .animate-spin-reverse {
+    animation: spin-reverse 45s linear infinite;
+  }
+
+  @keyframes shimmer-text {
+    0%, 100% {
+      text-shadow: 0 0 10px hsla(45, 85%, 50%, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 25px hsla(45, 85%, 50%, 0.8), 0 0 40px hsla(45, 85%, 50%, 0.4);
+    }
+  }
+
+  .animate-shimmer-text {
+    animation: shimmer-text 2s ease-in-out infinite;
+  }
+
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    75%, 100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
