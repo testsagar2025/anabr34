@@ -1,7 +1,9 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
 import Parallax3DWrapper from "@/components/Parallax3DWrapper";
+import CurtainReveal from "@/components/CurtainReveal";
 import { Calendar, Heart, Sparkles } from "lucide-react";
 import ganeshaImage from "@/assets/ganesha.png";
 import shlokImage from "@/assets/shlok.png";
@@ -10,17 +12,31 @@ import shlokImage from "@/assets/shlok.png";
 const Scene3D = lazy(() => import("@/components/Scene3D"));
 
 const Index = () => {
+  const [searchParams] = useSearchParams();
+  const [showCurtain, setShowCurtain] = useState(true);
+  const [isRevealed, setIsRevealed] = useState(false);
+  
+  // Get guest name and family flag from URL parameters
+  const guestName = searchParams.get('name') || '';
+  const withFamily = searchParams.get('family') === 'true' || searchParams.has('family');
+  
+  // If no guest name, skip curtain animation
+  useEffect(() => {
+    if (!guestName) {
+      setShowCurtain(false);
+      setIsRevealed(true);
+    }
+  }, [guestName]);
+
+  const handleRevealComplete = useCallback(() => {
+    setIsRevealed(true);
+  }, []);
+  
   // Wedding date: April 28, 2026
   const weddingDate = new Date("2026-04-28T18:00:00");
 
-  return (
-    <>
-      <head>
-        <title>Vipin & Priya Wedding Invitation | April 2026</title>
-        <meta name="description" content="You are cordially invited to celebrate the wedding of Vipin and Priya. April 28, 2026" />
-      </head>
-      
-      <main className="min-h-screen bg-background relative overflow-hidden">
+  const mainContent = (
+    <main className="min-h-screen bg-background relative overflow-hidden">
         {/* 3D Background Scene */}
         <Suspense fallback={null}>
           <Scene3D />
@@ -235,6 +251,28 @@ const Index = () => {
           </footer>
         </div>
       </main>
+  );
+
+  return (
+    <>
+      <head>
+        <title>{guestName ? `${guestName}${withFamily ? ' & Family' : ''} - ` : ''}Vipin & Priya Wedding Invitation | April 2026</title>
+        <meta name="description" content={`${guestName ? `Dear ${guestName}${withFamily ? ' & Family' : ''}, you` : 'You'} are cordially invited to celebrate the wedding of Vipin and Priya. April 28, 2026`} />
+      </head>
+      
+      {/* Curtain Animation for personalized invites */}
+      {guestName && showCurtain && (
+        <CurtainReveal 
+          guestName={guestName} 
+          withFamily={withFamily} 
+          onRevealComplete={handleRevealComplete}
+        >
+          {mainContent}
+        </CurtainReveal>
+      )}
+      
+      {/* Show main content after reveal or if no guest name */}
+      {isRevealed && mainContent}
     </>
   );
 };
