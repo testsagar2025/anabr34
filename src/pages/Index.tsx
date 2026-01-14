@@ -4,9 +4,10 @@ import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
 import Parallax3DWrapper from "@/components/Parallax3DWrapper";
 import InvitationEnvelope from "@/components/InvitationEnvelope";
-import { Calendar, Heart, Sparkles } from "lucide-react";
+import { Calendar, Heart, Sparkles, Loader2 } from "lucide-react";
 import ganeshaImage from "@/assets/ganesha.png";
 import shlokImage from "@/assets/shlok.png";
+import { useGuestData, eventNameHindi, eventIcons, eventDescriptions } from "@/hooks/useGuestData";
 
 // Lazy load the 3D scene for better performance
 const Scene3D = lazy(() => import("@/components/Scene3D"));
@@ -15,9 +16,11 @@ const Index = () => {
   const [searchParams] = useSearchParams();
   const [showEnvelope, setShowEnvelope] = useState(true);
   
-  // Get guest name and family flag from URL parameters
-  const guestName = searchParams.get('name') || '';
-  const withFamily = searchParams.get('family') === 'true' || searchParams.has('family');
+  // Get guest ID from URL parameters
+  const guestId = searchParams.get('id') || '';
+  
+  // Fetch guest data from API
+  const { guestData, loading, error } = useGuestData(guestId || null);
 
   const handleOpenInvitation = useCallback(() => {
     setShowEnvelope(false);
@@ -25,6 +28,36 @@ const Index = () => {
   
   // Wedding date: April 28, 2026
   const weddingDate = new Date("2026-04-28T18:00:00");
+
+  // Loading state
+  if (guestId && loading) {
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-[#722424] animate-spin mx-auto mb-4" />
+          <p className="font-display text-[#722424]/70 tracking-wider">
+            निमंत्रण पत्र लोड हो रहा है...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (guestId && error) {
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white">
+        <div className="text-center max-w-md mx-6">
+          <p className="font-display text-[#722424] text-xl mb-2">
+            क्षमा करें
+          </p>
+          <p className="text-[#722424]/60">
+            {error}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const mainContent = (
     <main className="min-h-screen bg-background relative overflow-hidden">
@@ -100,7 +133,7 @@ const Index = () => {
                       <div className="relative z-10 py-2">
                         <img 
                           src={ganeshaImage} 
-                          alt="Lord Ganesha" 
+                          alt="श्री गणेश" 
                           className="relative w-24 h-24 md:w-32 md:h-32 object-contain mx-auto ganesha-image animate-float"
                         />
                       </div>
@@ -110,7 +143,7 @@ const Index = () => {
                     <div className="relative max-w-xs md:max-w-sm mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
                       <img 
                         src={shlokImage} 
-                        alt="Vakratunda Mahakaya Shlok" 
+                        alt="वक्रतुण्ड महाकाय श्लोक" 
                         className="w-full h-auto object-contain shlok-image mx-auto"
                         style={{ maxHeight: '60px' }}
                       />
@@ -132,15 +165,18 @@ const Index = () => {
                   <div className="inline-block mb-4 animate-fade-in-down">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Sparkles className="w-4 h-4 text-gold animate-twinkle" />
-                      <p className="text-gold font-display text-xs md:text-sm tracking-[0.4em] uppercase">
-                        You Are Cordially Invited To
+                      <p className="text-gold font-display text-xs md:text-sm tracking-[0.3em]">
+                        ॥ शुभ विवाह ॥
                       </p>
                       <Sparkles className="w-4 h-4 text-gold animate-twinkle" style={{ animationDelay: "0.5s" }} />
                     </div>
+                    <p className="text-gold/80 font-display text-xs tracking-[0.2em]">
+                      आप सादर आमंत्रित हैं
+                    </p>
                   </div>
                   
                   <h1 className="font-script text-6xl md:text-8xl lg:text-9xl text-royal-red mb-6 drop-shadow-lg animate-fade-in-up text-shadow-elegant title-3d" style={{ animationDelay: "0.2s" }}>
-                    Vipin & Priya
+                    विपिन & प्रिया
                   </h1>
                   
                   <div className="flex items-center justify-center gap-4 mb-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
@@ -150,7 +186,7 @@ const Index = () => {
                   </div>
                   
                   <p className="font-display text-lg md:text-xl text-muted-foreground tracking-wider animate-fade-in" style={{ animationDelay: "0.5s" }}>
-                    Wedding Celebration
+                    विवाह समारोह
                   </p>
                 </div>
               </Parallax3DWrapper>
@@ -189,14 +225,14 @@ const Index = () => {
 
           {/* Events Section */}
           <section className="py-20 md:py-28 px-4">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-4xl mx-auto">
               <Parallax3DWrapper intensity={6}>
                 <div className="text-center mb-14">
                   <p className="text-gold font-display text-xs md:text-sm tracking-[0.35em] uppercase mb-3 animate-fade-in">
-                    The Celebration
+                    शुभ कार्यक्रम
                   </p>
                   <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-foreground animate-fade-in-up title-3d" style={{ animationDelay: "0.1s" }}>
-                    Wedding Day
+                    {guestData ? 'आपके लिए आमंत्रण' : 'विवाह समारोह'}
                   </h2>
                   <div className="flex items-center justify-center gap-3 mt-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                     <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/60" />
@@ -206,18 +242,39 @@ const Index = () => {
                 </div>
               </Parallax3DWrapper>
 
-              <div className="flex justify-center">
-                <Parallax3DWrapper intensity={10} popOut>
-                  <EventCard
-                    title="Wedding Ceremony"
-                    date="April 28, 2026"
-                    day="Tuesday"
-                    time="Auspicious Hour"
-                    icon="🔥"
-                    description="Your gracious presence is requested at the sacred wedding ceremony"
-                    delay={0.3}
-                  />
-                </Parallax3DWrapper>
+              {/* Dynamic Events from API or Default */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {guestData && guestData.events && guestData.events.length > 0 ? (
+                  // Show events from API
+                  guestData.events.map((event, index) => (
+                    <Parallax3DWrapper key={event} intensity={10} popOut>
+                      <EventCard
+                        title={eventNameHindi[event] || event}
+                        date="28 अप्रैल 2026"
+                        day="मंगलवार"
+                        time="शुभ मुहूर्त"
+                        icon={eventIcons[event] || '✨'}
+                        description={eventDescriptions[event] || 'आपकी उपस्थिति हमारे लिए सौभाग्य की बात होगी'}
+                        delay={0.3 + index * 0.1}
+                      />
+                    </Parallax3DWrapper>
+                  ))
+                ) : (
+                  // Default event when no guest data
+                  <div className="md:col-span-2 flex justify-center">
+                    <Parallax3DWrapper intensity={10} popOut>
+                      <EventCard
+                        title="शादी समारोह"
+                        date="28 अप्रैल 2026"
+                        day="मंगलवार"
+                        time="शुभ मुहूर्त"
+                        icon="💒"
+                        description="पवित्र विवाह समारोह में आपकी उपस्थिति हमारे लिए सौभाग्य की बात होगी"
+                        delay={0.3}
+                      />
+                    </Parallax3DWrapper>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -232,11 +289,11 @@ const Index = () => {
               </div>
               
               <p className="text-muted-foreground text-sm font-display tracking-wider mb-2">
-                Created with love by Amantran 3D Invitation Studio
+                अमंत्रण 3D इनविटेशन स्टूडियो द्वारा निर्मित
               </p>
               
               <p className="text-muted-foreground/60 text-xs font-display tracking-wider">
-                © 2026 Vipin & Priya Wedding
+                © 2026 विपिन & प्रिया विवाह
               </p>
             </div>
           </footer>
@@ -247,21 +304,20 @@ const Index = () => {
   return (
     <>
       <head>
-        <title>{guestName ? `${guestName}${withFamily ? ' & Family' : ''} - ` : ''}Vipin & Priya Wedding Invitation | April 2026</title>
-        <meta name="description" content={`${guestName ? `Dear ${guestName}${withFamily ? ' & Family' : ''}, you` : 'You'} are cordially invited to celebrate the wedding of Vipin and Priya. April 28, 2026`} />
+        <title>{guestData ? `${guestData.name}${guestData.type === 'family' ? ' एवं परिवार' : ''} - ` : ''}विपिन & प्रिया विवाह निमंत्रण | अप्रैल 2026</title>
+        <meta name="description" content={`${guestData ? `प्रिय ${guestData.name}${guestData.type === 'family' ? ' एवं परिवार' : ''}, आप` : 'आप'} विपिन और प्रिया के विवाह समारोह में सादर आमंत्रित हैं। 28 अप्रैल 2026`} />
       </head>
       
       {/* Personalized Invitation Envelope */}
-      {guestName && showEnvelope && (
+      {guestData && showEnvelope && (
         <InvitationEnvelope 
-          guestName={guestName} 
-          withFamily={withFamily} 
+          guestData={guestData}
           onOpen={handleOpenInvitation}
         />
       )}
       
-      {/* Main Content - show when envelope is opened or no guest name */}
-      {(!guestName || !showEnvelope) && mainContent}
+      {/* Main Content - show when envelope is opened or no guest data */}
+      {(!guestData || !showEnvelope) && mainContent}
     </>
   );
 };
@@ -278,37 +334,37 @@ interface EventCardProps {
 
 const EventCard = ({ title, date, day, time, icon, description, delay }: EventCardProps) => (
   <div 
-    className="group relative animate-fade-in-up max-w-sm w-full"
+    className="group relative animate-fade-in-up w-full"
     style={{ animationDelay: `${delay}s` }}
   >
     {/* Background Glow */}
     <div className="absolute -inset-2 bg-gradient-to-br from-gold/25 via-gold-light/15 to-gold/25 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
     
     {/* Card */}
-    <div className="relative elegant-card rounded-2xl p-8 md:p-10 text-center group-hover:shadow-3d-hover transition-all duration-500 group-hover:-translate-y-2 overflow-hidden card-3d">
+    <div className="relative elegant-card rounded-2xl p-6 md:p-8 text-center group-hover:shadow-3d-hover transition-all duration-500 group-hover:-translate-y-2 overflow-hidden card-3d">
       {/* Decorative Corners */}
-      <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-tl-2xl transition-colors duration-500" />
-      <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-tr-2xl transition-colors duration-500" />
-      <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-bl-2xl transition-colors duration-500" />
-      <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-br-2xl transition-colors duration-500" />
+      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-tl-2xl transition-colors duration-500" />
+      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-tr-2xl transition-colors duration-500" />
+      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-bl-2xl transition-colors duration-500" />
+      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-br-2xl transition-colors duration-500" />
       
       {/* Content */}
       <div className="relative z-10">
-        <div className="text-5xl md:text-6xl mb-5 transform group-hover:scale-110 transition-transform duration-500">
+        <div className="text-4xl md:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-500">
           {icon}
         </div>
         
-        <h3 className="font-display text-xl md:text-2xl text-foreground mb-4 tracking-wide">
+        <h3 className="font-display text-lg md:text-xl text-foreground mb-3 tracking-wide">
           {title}
         </h3>
         
-        <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+        <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
           {description}
         </p>
         
-        <div className="flex items-center justify-center gap-2 mb-3">
+        <div className="flex items-center justify-center gap-2 mb-2">
           <Calendar className="w-4 h-4 text-gold" />
-          <p className="text-gold font-display text-base font-semibold tracking-wide">
+          <p className="text-gold font-display text-sm font-semibold tracking-wide">
             {date}
           </p>
         </div>
