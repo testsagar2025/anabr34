@@ -260,12 +260,22 @@ const WeddingVideoPlayer = () => {
     }
   };
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     if (containerRef.current) {
       if (document.fullscreenElement) {
-        document.exitFullscreen();
+        await document.exitFullscreen();
+        // Unlock screen orientation when exiting fullscreen
+        try {
+          const orientation = screen.orientation as any;
+          if (orientation?.unlock) orientation.unlock();
+        } catch (e) { /* ignore */ }
       } else {
-        containerRef.current.requestFullscreen();
+        await containerRef.current.requestFullscreen();
+        // Lock to landscape on mobile for better video viewing
+        try {
+          const orientation = screen.orientation as any;
+          if (orientation?.lock) await orientation.lock('landscape');
+        } catch (e) { /* Orientation lock not supported */ }
       }
     }
   };
@@ -280,26 +290,35 @@ const WeddingVideoPlayer = () => {
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleMouseMove}
       onMouseLeave={() => {
         isPlaying && setShowControls(false);
         setShowVolumeSlider(false);
       }}
-      className="relative rounded-2xl overflow-hidden shadow-3d transform-3d hover:shadow-3d-hover transition-all duration-500"
+      className={`relative rounded-xl md:rounded-2xl overflow-hidden shadow-3d transform-3d hover:shadow-3d-hover transition-all duration-500 ${isFullscreen ? 'fixed inset-0 z-[9999] rounded-none bg-black' : ''}`}
     >
-      {/* 3D Frame Effect */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-gold via-gold-light to-gold rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity" />
-      <div className="absolute inset-0 bg-gradient-to-br from-royal-red-dark via-background to-royal-red-dark rounded-2xl" />
+      {/* 3D Frame Effect - hidden in fullscreen */}
+      {!isFullscreen && (
+        <>
+          <div className="absolute -inset-1 bg-gradient-to-r from-gold via-gold-light to-gold rounded-xl md:rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-br from-royal-red-dark via-background to-royal-red-dark rounded-xl md:rounded-2xl" />
+        </>
+      )}
       
       {/* Inner Container */}
-      <div className="relative z-10 rounded-2xl overflow-hidden border-2 border-gold/60">
-        {/* Corner 3D Decorations */}
-        <div className="absolute top-3 left-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle">✿</div>
-        <div className="absolute top-3 right-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "0.5s" }}>✿</div>
-        <div className="absolute bottom-16 left-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1s" }}>✿</div>
-        <div className="absolute bottom-16 right-3 text-gold text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1.5s" }}>✿</div>
+      <div className={`relative z-10 overflow-hidden ${isFullscreen ? 'w-full h-full' : 'rounded-xl md:rounded-2xl border-2 border-gold/60'}`}>
+        {/* Corner 3D Decorations - hidden in fullscreen */}
+        {!isFullscreen && (
+          <>
+            <div className="absolute top-2 left-2 md:top-3 md:left-3 text-gold text-base md:text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle">✿</div>
+            <div className="absolute top-2 right-2 md:top-3 md:right-3 text-gold text-base md:text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "0.5s" }}>✿</div>
+            <div className="absolute bottom-14 left-2 md:bottom-16 md:left-3 text-gold text-base md:text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1s" }}>✿</div>
+            <div className="absolute bottom-14 right-2 md:bottom-16 md:right-3 text-gold text-base md:text-xl z-30 pointer-events-none drop-shadow-gold animate-twinkle" style={{ animationDelay: "1.5s" }}>✿</div>
+          </>
+        )}
 
         {/* Video Player */}
-        <div className="relative aspect-video bg-gradient-to-br from-royal-red-dark to-background">
+        <div className={`relative bg-gradient-to-br from-royal-red-dark to-background ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}>
           <div ref={playerContainerRef} className="absolute inset-0 w-full h-full" />
 
           {/* Banner Overlay */}

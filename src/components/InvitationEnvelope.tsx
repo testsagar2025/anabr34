@@ -54,44 +54,51 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
         </div>
 
         {/* Card Content */}
-        <div className="bg-white rounded-sm shadow-[0_4px_40px_rgba(114,36,36,0.08)] p-8 md:p-12 text-center border border-[#722424]/10">
+        <div className="bg-white rounded-sm shadow-[0_4px_40px_rgba(114,36,36,0.08)] p-6 sm:p-8 md:p-12 text-center border border-[#722424]/10">
           {/* Top Ornament */}
-          <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
-            <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-[#722424]/40" />
-            <span className="text-[#722424]/60 text-lg">✦</span>
-            <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-[#722424]/40" />
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6 animate-fade-in">
+            <span className="text-[#722424]/60 text-sm md:text-base">✦</span>
+            <p className="font-script-hindi text-lg sm:text-xl md:text-2xl text-[#722424]/80">
+              ॥ शुभ विवाह ॥
+            </p>
+            <span className="text-[#722424]/60 text-sm md:text-base">✦</span>
           </div>
 
-          {/* Shubh Vivah */}
-          <p className="font-script-hindi text-xl md:text-2xl text-[#722424]/80 mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            ॥ शुभ विवाह ॥
-          </p>
-
-          {/* Cordially Invite */}
-          <p className="font-hindi text-sm md:text-base text-[#722424]/70 mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            हम सादर आमंत्रित करते हैं
-          </p>
+          {/* Invitation Text */}
+          <div className="mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <p className="font-hindi text-base md:text-lg text-[#722424]/80 mb-2">
+              आमंत्रण
+            </p>
+            <p className="font-hindi text-xs sm:text-sm md:text-base text-[#722424]/60 max-w-sm mx-auto leading-relaxed">
+              हम सादर आमंत्रित करते हैं आपको एवं आपके परिवार को विवाह संस्कार में
+            </p>
+          </div>
 
           {/* Guest Name */}
           <h1 
-            className="font-script-hindi text-3xl md:text-5xl text-[#722424] mb-4 animate-fade-in-up leading-tight"
-            style={{ animationDelay: '0.4s' }}
+            className="font-script-hindi text-2xl sm:text-3xl md:text-5xl text-[#722424] mb-4 md:mb-6 animate-fade-in-up leading-tight"
+            style={{ animationDelay: '0.3s' }}
           >
-            {displayName}
+            श्री {displayName}
           </h1>
 
-          {/* To Our Wedding */}
-          <p className="font-hindi text-sm md:text-base text-[#722424]/60 mb-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            अपने विवाह समारोह में
-          </p>
+          {/* Couple Names */}
+          <div className="mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <p className="font-script-hindi text-xl sm:text-2xl md:text-3xl text-[#722424]/80 mb-2">
+              विपिन & प्रिया
+            </p>
+            <p className="font-hindi text-xs sm:text-sm text-[#722424]/50">
+              के पवित्र विवाह समारोह में शामिल होने के लिए
+            </p>
+          </div>
 
           {/* Events invited to */}
           {guestData.events && guestData.events.length > 0 && (
-            <div className="mb-6 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            <div className="mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               <p className="font-hindi text-[#722424]/50 text-xs mb-3">
                 आप निम्नलिखित कार्यक्रमों में आमंत्रित हैं
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                 {[...guestData.events]
                   .sort((a, b) => {
                     const order = ['rasum', 'tilak', 'haldi', 'mehndi', 'shadi'];
@@ -100,11 +107,11 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
                   .map((event) => (
                     <span 
                       key={event}
-                      className="inline-flex flex-col items-center px-3 py-2 bg-[#722424]/5 border border-[#722424]/15 rounded-lg"
+                      className="inline-flex flex-col items-center px-2 sm:px-3 py-1.5 sm:py-2 bg-[#722424]/5 border border-[#722424]/15 rounded-lg"
                     >
-                      <span className="text-lg mb-0.5">{eventIcons[event] || '✨'}</span>
-                      <span className="font-hindi text-[#722424]/80 text-xs font-medium">{eventNameHindi[event] || event}</span>
-                      <span className="font-hindi text-[#722424]/50 text-[10px]">{eventDates[event]?.date || ''}</span>
+                      <span className="text-base sm:text-lg mb-0.5">{eventIcons[event] || '✨'}</span>
+                      <span className="font-hindi text-[#722424]/80 text-[10px] sm:text-xs font-medium">{eventNameHindi[event] || event}</span>
+                      <span className="font-hindi text-[#722424]/50 text-[9px] sm:text-[10px]">{eventDates[event]?.date || ''}</span>
                     </span>
                   ))}
               </div>
@@ -112,22 +119,22 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
           )}
 
           {/* Divider */}
-          <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-            <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#722424]/30" />
-            <span className="text-[#722424]/40 text-sm">❧</span>
-            <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#722424]/30" />
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <div className="h-px w-6 md:w-8 bg-gradient-to-r from-transparent to-[#722424]/30" />
+            <span className="text-[#722424]/40 text-xs md:text-sm">❧</span>
+            <div className="h-px w-6 md:w-8 bg-gradient-to-l from-transparent to-[#722424]/30" />
           </div>
 
-          {/* Couple Names */}
-          <p className="font-script-hindi text-2xl md:text-3xl text-[#722424]/70 mb-8 animate-fade-in" style={{ animationDelay: '1s' }}>
-            विपिन & प्रिया
+          {/* Blessing Text */}
+          <p className="font-hindi text-xs sm:text-sm text-[#722424]/50 mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            आपका प्रेम, आशीर्वाद एवं समर्थन हमारे परिवार के लिए अत्यंत महत्वपूर्ण है।
           </p>
 
           {/* Open Card Button */}
           <button
             onClick={handleOpen}
-            className="group relative inline-flex items-center gap-3 px-8 py-3 bg-[#722424] text-white font-hindi text-sm rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_8px_30px_rgba(114,36,36,0.3)] animate-fade-in"
-            style={{ animationDelay: '1.2s' }}
+            className="group relative inline-flex items-center gap-2 md:gap-3 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#722424] text-white font-hindi text-xs sm:text-sm rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_8px_30px_rgba(114,36,36,0.3)] animate-fade-in"
+            style={{ animationDelay: '0.8s' }}
           >
             {/* Shimmer effect */}
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -136,7 +143,7 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
             
             {/* Arrow icon */}
             <svg 
-              className="relative w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+              className="relative w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -146,10 +153,10 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
           </button>
 
           {/* Bottom Ornament */}
-          <div className="flex items-center justify-center gap-3 mt-8 animate-fade-in" style={{ animationDelay: '1.4s' }}>
-            <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-[#722424]/40" />
-            <span className="text-[#722424]/60 text-lg">✦</span>
-            <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-[#722424]/40" />
+          <div className="flex items-center justify-center gap-2 md:gap-3 mt-6 md:mt-8 animate-fade-in" style={{ animationDelay: '0.9s' }}>
+            <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-[#722424]/40" />
+            <span className="text-[#722424]/60 text-sm md:text-base">✦</span>
+            <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-[#722424]/40" />
           </div>
         </div>
       </div>
