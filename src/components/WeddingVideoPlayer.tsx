@@ -64,7 +64,7 @@ const WeddingVideoPlayer = () => {
   const hideControlsTimeout = useRef<NodeJS.Timeout>();
   const progressInterval = useRef<NodeJS.Timeout>();
 
-  const videoId = "DIV_I5V2mS8";
+  const videoId = "MmrnuypauBM";
 
   const initializePlayer = useCallback(() => {
     if (playerInitialized || !playerContainerRef.current) return;

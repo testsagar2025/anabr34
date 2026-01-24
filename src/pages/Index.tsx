@@ -4,6 +4,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import WeddingVideoPlayer from "@/components/WeddingVideoPlayer";
 import Parallax3DWrapper from "@/components/Parallax3DWrapper";
 import InvitationEnvelope from "@/components/InvitationEnvelope";
+import EventDetailDialog, { EventDetail, eventDetails } from "@/components/EventDetailDialog";
 import { Calendar, Heart, Sparkles, Loader2 } from "lucide-react";
 import ganeshaImage from "@/assets/ganesha.png";
 import shlokImage from "@/assets/shlok.png";
@@ -15,6 +16,11 @@ const Scene3D = lazy(() => import("@/components/Scene3D"));
 const Index = () => {
   const [searchParams] = useSearchParams();
   const [showEnvelope, setShowEnvelope] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState<{
+    event: EventDetail;
+    icon: string;
+    description: string;
+  } | null>(null);
   
   // Get guest ID from URL parameters
   const guestId = searchParams.get('id') || '';
@@ -24,6 +30,23 @@ const Index = () => {
 
   const handleOpenInvitation = useCallback(() => {
     setShowEnvelope(false);
+  }, []);
+
+  const handleEventClick = useCallback((eventKey: string, title: string, date: string, day: string, icon: string, description: string) => {
+    setSelectedEvent({
+      event: {
+        eventKey,
+        title,
+        date,
+        day,
+      },
+      icon,
+      description,
+    });
+  }, []);
+
+  const handleCloseEventDialog = useCallback(() => {
+    setSelectedEvent(null);
   }, []);
   
   // Wedding date: April 28, 2026
@@ -264,6 +287,7 @@ const Index = () => {
                     .map((event, index) => (
                       <Parallax3DWrapper key={event} intensity={10} popOut>
                         <EventCard
+                          eventKey={event}
                           title={eventNameHindi[event] || event}
                           date={eventDates[event]?.date || '28 अप्रैल 2026'}
                           day={eventDates[event]?.day || 'मंगलवार'}
@@ -272,6 +296,7 @@ const Index = () => {
                           description={eventDescriptions[event] || 'आपकी उपस्थिति हमारे लिए सौभाग्य की बात होगी'}
                           delay={0.3 + index * 0.1}
                           index={index + 1}
+                          onClick={handleEventClick}
                         />
                       </Parallax3DWrapper>
                     ))
@@ -280,6 +305,7 @@ const Index = () => {
                   <>
                     <Parallax3DWrapper intensity={10} popOut>
                       <EventCard
+                        eventKey="rasum"
                         title="रसुम"
                         date="20 अप्रैल, 2026"
                         day="सोमवार"
@@ -288,10 +314,12 @@ const Index = () => {
                         description="पवित्र रसुम समारोह में आपकी उपस्थिति से हमें अपार प्रसन्नता की अनुभूति होगी। इस शुभ अवसर पर दोनों परिवारों का मिलन होगा।"
                         delay={0.3}
                         index={1}
+                        onClick={handleEventClick}
                       />
                     </Parallax3DWrapper>
                     <Parallax3DWrapper intensity={10} popOut>
                       <EventCard
+                        eventKey="tilak"
                         title="तिलक"
                         date="22 अप्रैल, 2026"
                         day="बुधवार"
@@ -300,10 +328,12 @@ const Index = () => {
                         description="तिलक की शुभ परंपरा का निर्वहन किया जाएगा। इस मंगलमय अवसर पर आपकी कृपा और आशीर्वाद की कामना है।"
                         delay={0.4}
                         index={2}
+                        onClick={handleEventClick}
                       />
                     </Parallax3DWrapper>
                     <Parallax3DWrapper intensity={10} popOut>
                       <EventCard
+                        eventKey="haldi"
                         title="हल्दी"
                         date="26 अप्रैल, 2026"
                         day="रविवार"
@@ -312,10 +342,12 @@ const Index = () => {
                         description="हल्दी का पवित्र समारोह दुल्हन को सौंदर्य और कोमलता से सजाने के लिए किया जाता है। कृपया इस आनंद में शामिल हों।"
                         delay={0.5}
                         index={3}
+                        onClick={handleEventClick}
                       />
                     </Parallax3DWrapper>
                     <Parallax3DWrapper intensity={10} popOut>
                       <EventCard
+                        eventKey="mehndi"
                         title="मेहंदी"
                         date="27 अप्रैल, 2026"
                         day="सोमवार"
@@ -324,10 +356,12 @@ const Index = () => {
                         description="मेहंदी की खुशियों में डूबी महिलाओं के गीत और हंसी से भरा एक मंगलमय पल। आप इस परंपरागत उत्सव का हिस्सा बनें।"
                         delay={0.6}
                         index={4}
+                        onClick={handleEventClick}
                       />
                     </Parallax3DWrapper>
                     <Parallax3DWrapper intensity={10} popOut>
                       <EventCard
+                        eventKey="shadi"
                         title="विवाह"
                         date="28 अप्रैल, 2026"
                         day="मंगलवार"
@@ -336,6 +370,7 @@ const Index = () => {
                         description="पवित्र अग्नि के साक्षी रहते दो आत्माओं का मिलन होगा। विवाह मंडप में आपकी उपस्थिति हमारे इस पवित्र बंधन को सार्थक करेगी।"
                         delay={0.7}
                         index={5}
+                        onClick={handleEventClick}
                       />
                     </Parallax3DWrapper>
                   </>
@@ -383,11 +418,21 @@ const Index = () => {
       
       {/* Main Content - show when envelope is opened or no guest data */}
       {(!guestData || !showEnvelope) && mainContent}
+
+      {/* Event Detail Dialog */}
+      <EventDetailDialog
+        isOpen={!!selectedEvent}
+        onClose={handleCloseEventDialog}
+        event={selectedEvent?.event || null}
+        icon={selectedEvent?.icon || ''}
+        description={selectedEvent?.description || ''}
+      />
     </>
   );
 };
 
 interface EventCardProps {
+  eventKey: string;
   title: string;
   date: string;
   day: string;
@@ -396,12 +441,14 @@ interface EventCardProps {
   description: string;
   delay: number;
   index: number;
+  onClick: (eventKey: string, title: string, date: string, day: string, icon: string, description: string) => void;
 }
 
-const EventCard = ({ title, date, day, time, icon, description, delay, index }: EventCardProps) => (
+const EventCard = ({ eventKey, title, date, day, time, icon, description, delay, index, onClick }: EventCardProps) => (
   <div 
-    className="group relative animate-fade-in-up w-full"
+    className="group relative animate-fade-in-up w-full cursor-pointer"
     style={{ animationDelay: `${delay}s` }}
+    onClick={() => onClick(eventKey, title, date, day, icon, description)}
   >
     {/* Background Glow */}
     <div className="absolute -inset-2 bg-gradient-to-br from-gold/25 via-gold-light/15 to-gold/25 rounded-2xl md:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
@@ -444,8 +491,13 @@ const EventCard = ({ title, date, day, time, icon, description, delay, index }: 
         </p>
         
         {/* Description */}
-        <p className="font-hindi text-muted-foreground text-xs md:text-sm leading-relaxed">
+        <p className="font-hindi text-muted-foreground text-xs md:text-sm leading-relaxed line-clamp-2">
           {description}
+        </p>
+
+        {/* Click hint */}
+        <p className="font-hindi text-gold/60 text-[10px] md:text-xs mt-3 group-hover:text-gold transition-colors">
+          विवरण के लिए क्लिक करें →
         </p>
       </div>
       
