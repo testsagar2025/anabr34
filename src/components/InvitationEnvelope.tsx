@@ -9,9 +9,15 @@ interface InvitationEnvelopeProps {
 const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
   const [isOpening, setIsOpening] = useState(false);
 
+  // Convert name to Hindi display
+  const getHindiName = (name: string) => {
+    // The name from API is in English, display as is but with Hindi styling
+    return name;
+  };
+  
   const displayName = guestData.type === 'family' 
-    ? `${guestData.name} एवं परिवार` 
-    : guestData.name;
+    ? `${getHindiName(guestData.name)} एवं परिवार` 
+    : getHindiName(guestData.name);
 
   const handleOpen = () => {
     setIsOpening(true);
