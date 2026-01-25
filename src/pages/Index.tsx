@@ -379,22 +379,43 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Footer */}
-          <footer className="py-8 md:py-10 px-4 border-t border-gold/20 bg-gradient-to-t from-card/50 to-transparent">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-5">
-                <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-gold/40" />
-                <span className="text-gold text-sm md:text-base animate-twinkle">✦</span>
-                <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-gold/40" />
+          {/* Enhanced Footer */}
+          <footer className="relative py-10 md:py-14 px-4 border-t border-gold/20 bg-gradient-to-t from-[#722424]/5 via-card/60 to-transparent overflow-hidden">
+            {/* Background Decorations */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-gradient-radial from-gold/5 to-transparent rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-gradient-radial from-royal-red/5 to-transparent rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative max-w-5xl mx-auto text-center">
+              {/* Decorative Top Element */}
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent via-gold/40 to-gold/60" />
+                <div className="flex items-center gap-2">
+                  <span className="text-gold/60 text-sm animate-twinkle">✧</span>
+                  <span className="text-gold text-lg animate-pulse-soft">❧</span>
+                  <span className="text-gold/60 text-sm animate-twinkle" style={{ animationDelay: '0.5s' }}>✧</span>
+                </div>
+                <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent via-gold/40 to-gold/60" />
               </div>
               
-              <p className="font-hindi text-muted-foreground text-sm md:text-base mb-3">
-                कृपया इस पवित्र बंधन में शामिल होकर हमारा मार्गदर्शन करें।
+              <p className="font-hindi text-muted-foreground text-sm md:text-base mb-4 leading-relaxed">
+                कृपया इस पवित्र बंधन में शामिल होकर हमें अपने आशीर्वाद से कृतार्थ करें।
               </p>
               
-              <p className="text-muted-foreground/60 text-xs md:text-sm font-hindi">
+              <p className="text-muted-foreground/60 text-xs md:text-sm font-hindi mb-6">
                 © 2026 विपिन & प्रिया विवाह
               </p>
+
+              {/* Credit Section */}
+              <div className="pt-4 border-t border-gold/10">
+                <p className="font-hindi text-gold/70 text-xs md:text-sm tracking-wider">
+                  अवधारणा • डिज़ाइन • विकास
+                </p>
+                <p className="font-script-hindi text-[#722424]/80 text-base md:text-lg mt-1.5 hover:text-[#722424] transition-colors duration-300">
+                  आर्यन गुप्ता
+                </p>
+              </div>
             </div>
           </footer>
         </div>
