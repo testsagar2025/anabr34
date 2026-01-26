@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { MapPin, Clock, Camera, ExternalLink, Utensils, Users, Sparkles, Navigation } from 'lucide-react';
+import { MapPin, Clock, Utensils, Users, Sparkles } from 'lucide-react';
 
 export interface EventDetail {
   eventKey: string;
@@ -133,79 +133,49 @@ const EventDetailDialog = ({ isOpen, onClose, event, icon, description }: EventD
 
           {/* Timing Card */}
           {details?.timing && (
-            <div className="group flex items-center gap-4 p-4 bg-gradient-to-r from-[#722424]/8 via-[#722424]/5 to-transparent rounded-2xl border border-[#722424]/15 hover:border-[#722424]/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#722424] to-[#8a2c2c] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Clock className="w-5 h-5 text-white" />
+            <div className="group flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-gradient-to-r from-[#722424]/8 via-[#722424]/5 to-transparent rounded-xl md:rounded-2xl border border-[#722424]/15 hover:border-[#722424]/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-[#722424] to-[#8a2c2c] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <Clock className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </div>
-              <div className="flex-1">
-                <p className="font-hindi text-[#722424]/50 text-xs uppercase tracking-wider mb-0.5">समय</p>
-                <p className="font-hindi text-[#722424] text-lg font-semibold">{details.timing}</p>
+              <div className="flex-1 min-w-0">
+                <p className="font-hindi text-[#722424]/50 text-[10px] md:text-xs uppercase tracking-wider mb-0.5">समय</p>
+                <p className="font-hindi text-[#722424] text-sm md:text-lg font-semibold">{details.timing}</p>
               </div>
             </div>
           )}
 
           {/* Location Card */}
           {details?.location && (
-            <div className="group flex items-center gap-4 p-4 bg-gradient-to-r from-[#722424]/8 via-[#722424]/5 to-transparent rounded-2xl border border-[#722424]/15 hover:border-[#722424]/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#722424] to-[#8a2c2c] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="w-5 h-5 text-white" />
+            <div className="group flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-gradient-to-r from-[#722424]/8 via-[#722424]/5 to-transparent rounded-xl md:rounded-2xl border border-[#722424]/15 hover:border-[#722424]/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-[#722424] to-[#8a2c2c] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </div>
-              <div className="flex-1">
-                <p className="font-hindi text-[#722424]/50 text-xs uppercase tracking-wider mb-0.5">स्थान</p>
-                <p className="font-hindi text-[#722424] text-lg font-semibold">{details.location}</p>
+              <div className="flex-1 min-w-0">
+                <p className="font-hindi text-[#722424]/50 text-[10px] md:text-xs uppercase tracking-wider mb-0.5">स्थान</p>
+                <p className="font-hindi text-[#722424] text-sm md:text-lg font-semibold">{details.location}</p>
               </div>
-              {details.mapUrl && (
-                <a 
-                  href={details.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#722424] to-[#8a2c2c] text-white rounded-xl text-sm font-hindi hover:shadow-lg hover:scale-105 transition-all duration-300 group"
-                >
-                  <Navigation className="w-4 h-4 group-hover:animate-pulse" />
-                  नक्शा देखें
-                </a>
-              )}
             </div>
           )}
 
           {/* Additional Info Cards (for Shadi) */}
           {details?.additionalInfo && details.additionalInfo.length > 0 && (
-            <div className="space-y-3 pt-2">
-              <p className="font-hindi text-gold text-xs uppercase tracking-wider text-center">विशेष जानकारी</p>
+            <div className="space-y-2 md:space-y-3 pt-2">
+              <p className="font-hindi text-gold text-[10px] md:text-xs uppercase tracking-wider text-center">विशेष जानकारी</p>
               {details.additionalInfo.map((info, idx) => (
                 <div 
                   key={idx} 
-                  className="group flex items-center gap-4 p-4 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent rounded-2xl border border-gold/20 hover:border-gold/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                  className="group flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent rounded-xl md:rounded-2xl border border-gold/20 hover:border-gold/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-lg text-royal-red-dark group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-lg text-royal-red-dark group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                     {getIcon(info.icon)}
                   </div>
-                  <div>
-                    <p className="font-hindi text-[#722424]/50 text-xs uppercase tracking-wider mb-0.5">{info.label}</p>
-                    <p className="font-hindi text-[#722424] text-lg font-semibold">{info.value}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-hindi text-[#722424]/50 text-[10px] md:text-xs uppercase tracking-wider mb-0.5">{info.label}</p>
+                    <p className="font-hindi text-[#722424] text-sm md:text-lg font-semibold">{info.value}</p>
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {/* Photo Section */}
-          {details?.photo ? (
-            <div className="relative rounded-2xl overflow-hidden border-2 border-gold/20 shadow-xl group">
-              <img src={details.photo} alt={`${event.title} फोटो`} className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-3 right-3 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full flex items-center gap-2">
-                <Camera className="w-3.5 h-3.5 text-white" />
-                <span className="font-hindi text-white text-xs">फोटो</span>
-              </div>
-            </div>
-          ) : (
-            <div className="relative rounded-2xl overflow-hidden border-2 border-dashed border-gold/25 bg-gradient-to-br from-gold/5 to-gold/10 h-36 flex flex-col items-center justify-center group hover:border-gold/40 transition-colors duration-300">
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%200v20M0%2010h20%22%20stroke%3D%22%23d4af37%22%20stroke-width%3D%220.1%22%20opacity%3D%220.3%22%2F%3E%3C%2Fsvg%3E')] opacity-50" />
-              <Camera className="w-10 h-10 text-gold/40 mb-3 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-hindi text-gold/60 text-sm">फोटो जल्द ही उपलब्ध होगी</p>
-              <p className="font-hindi text-gold/40 text-xs mt-1">📷 कृपया प्रतीक्षा करें</p>
             </div>
           )}
         </div>

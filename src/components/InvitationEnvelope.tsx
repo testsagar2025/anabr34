@@ -59,51 +59,54 @@ const InvitationEnvelope = ({ guestData, onOpen }: InvitationEnvelopeProps) => {
         </div>
 
         {/* Card Content */}
-        <div className="bg-white rounded-sm shadow-[0_4px_40px_rgba(114,36,36,0.08)] p-6 sm:p-8 md:p-12 text-center border border-[#722424]/10">
+        <div className="bg-white rounded-sm shadow-[0_4px_40px_rgba(114,36,36,0.08)] p-5 sm:p-8 md:p-12 text-center border border-[#722424]/10">
           {/* Shubh Vivah Header */}
-          <p className="font-script-hindi text-xl sm:text-2xl md:text-3xl text-[#722424] mb-3 md:mb-4 animate-fade-in">
-            ॥ शुभ विवाह ॥
+          <p className="font-script-hindi text-lg sm:text-xl md:text-2xl text-[#722424] mb-2 md:mb-3 animate-fade-in">
+            शुभ विवाह आमंत्रण
+          </p>
+          
+          <p className="font-hindi text-sm md:text-base text-[#722424]/70 mb-3 md:mb-4 animate-fade-in" style={{ animationDelay: '0.05s' }}>
+            ॥ श्री गणेशाय नमः ॥
           </p>
 
           {/* Decorative Stars */}
-          <div className="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <div className="flex items-center justify-center gap-3 md:gap-4 mb-3 md:mb-5 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <span className="text-[#722424]/60 text-xs md:text-sm">✦</span>
             <span className="text-[#722424]/60 text-xs md:text-sm">✦</span>
             <span className="text-[#722424]/60 text-xs md:text-sm">✦</span>
           </div>
 
+          {/* Manyavar Text */}
+          <p className="font-hindi text-xs sm:text-sm text-[#722424]/70 mb-2 md:mb-3 animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            मान्यवर,
+          </p>
+
           {/* Invitation Text */}
-          <div className="mb-4 md:mb-6 space-y-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <p className="font-hindi text-sm md:text-base text-[#722424]/80">
-              हम सपरिवार
-            </p>
-            <p className="font-hindi text-sm md:text-base text-[#722424]/80">
-              आपको सादर आमंत्रित करते हैं
+          <div className="mb-3 md:mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="font-hindi text-xs sm:text-sm md:text-base text-[#722424]/80 leading-relaxed">
+              हम सपरिवार सादर आमंत्रित करते हैं
             </p>
           </div>
 
           {/* Guest Name */}
           {nameLoading ? (
             <div className="flex items-center justify-center gap-2 mb-3 md:mb-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <Loader2 className="w-5 h-5 text-[#722424] animate-spin" />
-              <span className="font-hindi text-sm text-[#722424]/60">नाम अनुवाद हो रहा है...</span>
+              <Loader2 className="w-4 h-4 md:w-5 md:h-5 text-[#722424] animate-spin" />
+              <span className="font-hindi text-xs sm:text-sm text-[#722424]/60">नाम अनुवाद हो रहा है...</span>
             </div>
           ) : (
             <h1 
-              className="font-script-hindi text-2xl sm:text-3xl md:text-4xl text-[#722424] mb-3 md:mb-4 animate-fade-in-up leading-tight"
+              className="font-script-hindi text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#722424] mb-3 md:mb-4 animate-fade-in-up leading-tight px-2"
               style={{ animationDelay: '0.3s' }}
             >
-              श्री {displayName} को
+              श्री {displayName}
             </h1>
           )}
 
           {/* Wedding Invitation Text */}
-          <div className="mb-4 md:mb-6 space-y-1 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <p className="font-hindi text-sm md:text-base text-[#722424]/80">
-              अपने शुभ विवाह समारोह में
-            </p>
-            <p className="font-hindi text-sm md:text-base text-[#722424]/80">
-              पधारकर हमें कृतार्थ करने हेतु।
+          <div className="mb-3 md:mb-5 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <p className="font-hindi text-xs sm:text-sm md:text-base text-[#722424]/80 leading-relaxed">
+              को हमारे यहाँ आयोजित शुभ विवाह समारोह में।
             </p>
           </div>
 
