@@ -187,10 +187,13 @@ const Index = () => {
                 <div className="text-center px-2">
                   {/* Shubh Vivah Header */}
                   <div className="inline-block mb-4 md:mb-6 animate-fade-in-down">
-                    <div className="flex items-center justify-center gap-2 md:gap-3 mb-3">
+                    <p className="text-gold font-script-hindi text-xl md:text-2xl lg:text-3xl mb-3">
+                      शुभ विवाह आमंत्रण
+                    </p>
+                    <div className="flex items-center justify-center gap-2 md:gap-3">
                       <span className="text-gold text-sm md:text-base">✦</span>
-                      <p className="text-gold font-script-hindi text-xl md:text-2xl lg:text-3xl">
-                        ॥ शुभ विवाह ॥
+                      <p className="text-gold font-hindi text-base md:text-lg">
+                        ॥ श्री गणेशाय नमः ॥
                       </p>
                       <span className="text-gold text-sm md:text-base">✦</span>
                     </div>
@@ -199,10 +202,7 @@ const Index = () => {
                   {/* Invitation Text */}
                   <div className="mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                     <p className="font-hindi text-base md:text-lg text-royal-red/80 mb-2">
-                      आमंत्रण
-                    </p>
-                    <p className="font-hindi text-sm md:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
-                      हम सादर आमंत्रित करते हैं आपको एवं आपके परिवार को विवाह संस्कार में
+                      उत्सव परिणय बंधन का...
                     </p>
                   </div>
                   
@@ -219,7 +219,7 @@ const Index = () => {
                   
                   {/* Wedding Description */}
                   <p className="font-hindi text-sm md:text-base lg:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed animate-fade-in px-4" style={{ animationDelay: "0.4s" }}>
-                    के पवित्र विवाह समारोह में शामिल होने के लिए। आपका प्रेम, आशीर्वाद एवं समर्थन हमारे परिवार के लिए अत्यंत महत्वपूर्ण है।
+                    मान्यवर, हम सपरिवार सादर आमंत्रित करते हैं आपको हमारे यहाँ आयोजित शुभ विवाह समारोह में।
                   </p>
                 </div>
               </Parallax3DWrapper>
@@ -265,7 +265,7 @@ const Index = () => {
                     शुभ कार्यक्रम
                   </p>
                   <h2 className="font-script-hindi text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground animate-fade-in-up title-3d" style={{ animationDelay: "0.1s" }}>
-                    विवाह की तारीखें
+                    मांगलिक कार्यक्रमों का विवरण
                   </h2>
                   <div className="flex items-center justify-center gap-2 md:gap-3 mt-3 md:mt-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                     <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-gold/60" />
@@ -409,10 +409,7 @@ const Index = () => {
 
               {/* Credit Section */}
               <div className="pt-4 border-t border-gold/10">
-                <p className="text-gold/70 text-xs md:text-sm tracking-widest font-medium">
-                  Concept • Design • Development
-                </p>
-                <p className="font-script-hindi text-[#722424]/80 text-base md:text-lg mt-1.5 hover:text-[#722424] transition-colors duration-300">
+                <p className="font-script-hindi text-[#722424]/80 text-base md:text-lg hover:text-[#722424] transition-colors duration-300">
                   आर्यन गुप्ता
                 </p>
               </div>
@@ -487,40 +484,36 @@ const EventCard = ({ eventKey, title, date, day, time, icon, description, delay,
       <div className="absolute bottom-0 left-0 w-5 h-5 md:w-6 md:h-6 border-b-2 border-l-2 border-gold/40 group-hover:border-gold/70 rounded-bl-xl md:rounded-bl-2xl transition-colors duration-500" />
       <div className="absolute bottom-0 right-0 w-5 h-5 md:w-6 md:h-6 border-b-2 border-r-2 border-gold/40 group-hover:border-gold/70 rounded-br-xl md:rounded-br-2xl transition-colors duration-500" />
       
-      {/* Content */}
-      <div className="relative z-10 pt-2">
-        {/* Title with Icon */}
-        <h3 className="font-script-hindi text-xl sm:text-2xl md:text-3xl text-foreground mb-1 md:mb-2">
-          {title} समारोह
-        </h3>
-        
-        {/* Icon */}
-        <div className="text-2xl md:text-3xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-500">
-          {icon}
-        </div>
-        
-        {/* Date with Calendar Icon */}
-        <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-2 md:mb-3 bg-gold/10 rounded-lg py-1.5 md:py-2 px-3">
-          <span className="text-sm md:text-base">📅</span>
-          <p className="text-gold font-hindi text-sm md:text-base font-semibold">
-            {date}
+        {/* Content */}
+        <div className="relative z-10 pt-2">
+          {/* Icon */}
+          <div className="text-3xl md:text-4xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-500">
+            {icon}
+          </div>
+          
+          {/* Title */}
+          <h3 className="font-script-hindi text-xl sm:text-2xl md:text-3xl text-foreground mb-2 md:mb-3">
+            {title} समारोह
+          </h3>
+          
+          {/* Date with Calendar Icon */}
+          <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-2 bg-gold/10 rounded-lg py-1.5 md:py-2 px-3">
+            <span className="text-sm md:text-base">📅</span>
+            <p className="text-gold font-hindi text-sm md:text-base font-semibold">
+              {date}
+            </p>
+          </div>
+          
+          <p className="font-hindi text-muted-foreground text-xs md:text-sm mb-3">
+            {day}
           </p>
-        </div>
-        
-        <p className="font-hindi text-muted-foreground text-xs md:text-sm mb-2 md:mb-3">
-          {day} | शुभ मुहूर्त अनुसार
-        </p>
-        
-        {/* Description */}
-        <p className="font-hindi text-muted-foreground text-xs md:text-sm leading-relaxed line-clamp-2">
-          {description}
-        </p>
 
-        {/* Click hint */}
-        <p className="font-hindi text-gold/60 text-[10px] md:text-xs mt-3 group-hover:text-gold transition-colors">
-          विवरण के लिए क्लिक करें →
-        </p>
-      </div>
+          {/* Click hint */}
+          <div className="flex items-center justify-center gap-2 text-gold/70 group-hover:text-gold transition-colors">
+            <span className="font-hindi text-xs md:text-sm">समय एवं स्थान देखें</span>
+            <span className="text-xs group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
       
       {/* Shimmer Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/8 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />

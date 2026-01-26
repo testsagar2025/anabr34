@@ -20,22 +20,22 @@ export interface EventDetail {
 // Event details configuration
 export const eventDetails: Record<string, Omit<EventDetail, 'eventKey' | 'title' | 'date' | 'day'>> = {
   rasum: {
-    timing: 'सायं ७:०० बजे',
+    timing: 'रात्रि ८:०० बजे से',
     location: 'माऊ',
     mapUrl: 'https://maps.app.goo.gl/nTmvYhVDpiBQB8548',
   },
   tilak: {
-    timing: 'सायं ७:०० बजे',
+    timing: 'रात्रि ८:०० बजे से',
     location: 'माऊ',
     mapUrl: 'https://maps.app.goo.gl/nTmvYhVDpiBQB8548',
   },
   haldi: {
-    timing: 'प्रातः १०:०० बजे',
+    timing: 'प्रातः १०:३० बजे से',
     location: 'माऊ',
     mapUrl: 'https://maps.app.goo.gl/nTmvYhVDpiBQB8548',
   },
   mehndi: {
-    timing: 'सायं ५:०० बजे',
+    timing: 'सायं ७:०० बजे से',
     location: 'माऊ',
     mapUrl: 'https://maps.app.goo.gl/nTmvYhVDpiBQB8548',
   },
@@ -44,8 +44,8 @@ export const eventDetails: Record<string, Omit<EventDetail, 'eventKey' | 'title'
     location: 'माऊ',
     mapUrl: 'https://maps.app.goo.gl/nTmvYhVDpiBQB8548',
     additionalInfo: [
-      { label: 'बारात आगमन समय', value: 'सायं ५:०० बजे', icon: 'users' },
-      { label: 'भोजन समय', value: 'रात्रि ८:३० बजे', icon: 'utensils' },
+      { label: 'बारात प्रस्थान', value: 'सायं ५:३० बजे', icon: 'users' },
+      { label: 'पाणिग्रहण संस्कार', value: 'मध्यरात्रि १२:०० बजे (२९ अप्रैल)', icon: 'clock' },
     ],
   },
 };
