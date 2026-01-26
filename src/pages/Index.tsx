@@ -261,10 +261,10 @@ const Index = () => {
             <div className="max-w-5xl mx-auto">
               <Parallax3DWrapper intensity={6}>
                 <div className="text-center mb-8 md:mb-14">
-                  <p className="text-gold font-hindi text-sm md:text-base mb-2 md:mb-3 animate-fade-in">
-                    शुभ कार्यक्रम
+                  <p className="text-gold font-hindi text-base md:text-lg mb-2 md:mb-3 animate-fade-in">
+                    ॥ मंगल उत्सव ॥
                   </p>
-                  <h2 className="font-script-hindi text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground animate-fade-in-up title-3d" style={{ animationDelay: "0.1s" }}>
+                  <h2 className="font-script-hindi text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground animate-fade-in-up title-3d" style={{ animationDelay: "0.1s" }}>
                     मांगलिक कार्यक्रमों का विवरण
                   </h2>
                   <div className="flex items-center justify-center gap-2 md:gap-3 mt-3 md:mt-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
